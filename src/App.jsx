@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Header from './components/common/Header';
 import Home from './pages/Home';
 import PhoneDeals from './pages/PhoneDeals';
 import PhoneSession from './pages/PhoneSession';
@@ -12,14 +13,15 @@ import NotFound from './components/common/NotFound';
 export default function App() {
   return (
     <BrowserRouter>
+      <Header/>
       <Routes>
         <Route path="/">
           <Route index element={<Home />} />
-          <Route path="phone-deals">
+          <Route path="phones">
             <Route index element={<PhoneDeals />} />
             <Route path=":brand" element={<PhoneSession />} />
           </Route>
-          <Route path="laptop-deals">
+          <Route path="laptops">
             <Route index element={<LaptopDeals />} />
             <Route path=":brand" element={<LaptopSession />} />
           </Route>

@@ -1,9 +1,15 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-  ],
+  content: {
+    files: [
+      "./index.html",
+      "./src/**/*.{js,ts,jsx,tsx}",
+    ],
+    safelist: [
+      'text-gold',
+      'text-gold2',
+    ],
+  },
   theme: {
     extend: {
       colors: {
@@ -14,7 +20,7 @@ export default {
           10: '#f1f3f4',
         },
         ash: '#575757',
-        gold: '#F7F4E9',
+        gold: '#fdfbf4',
         gold2: '#E49900',
         green: {
           50: '#30AF5B',
@@ -27,11 +33,6 @@ export default {
           50: '#585858',
           90: '#141414',
         },
-      },
-     backgroundImage: {
-        hero: "url('/src/assets/solar gadgets hero 2.jpg')",
-        banneroffer: "url('/src/assets/solar gadgets hero.jpg')",
-        freepage: "url('/src/assets/pexels-photo-9875680.jpeg')",
       },
       screens: {
         xs: '400px',

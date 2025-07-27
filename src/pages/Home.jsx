@@ -28,7 +28,7 @@ export default function Home() {
   const featuredProducts = getFeaturedProducts();
 
   return (
-    <div className="bg-gray-50 dark:bg-gray-900 min-h-screen">
+    <div className="dark:bg-gray-900 min-h-screen bg-gold">
       {/* Hero Carousel */}
       <HeroCarousel />
 

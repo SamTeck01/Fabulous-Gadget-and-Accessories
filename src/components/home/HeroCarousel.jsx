@@ -3,7 +3,7 @@ import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
-import banner1 from '../../assets/img/1.jpg';
+import banner1 from '../../assets/img/OTW-340-1920820.png';
 import banner2 from '../../assets/img/freepik-export-20240803150659TGc0.png';
 import banner3 from '../../assets/img/freepik-export-202408031523174eMe.png';
 import banner4 from '../../assets/img/banner-l1.png'; // Adjusted import path
@@ -21,7 +21,7 @@ export default function HeroCarousel() {
   ];
 
   return (
-    <div className="relative">
+    <div className="relative h-fit">
       <Swiper
         spaceBetween={30}
         centeredSlides={true}
@@ -41,7 +41,7 @@ export default function HeroCarousel() {
             <img 
               src={banner.src} 
               alt={banner.alt} 
-              className="w-full h-auto max-h-[500px] object-cover"
+              className="w-full h-fit md:max-h-[500px] object-cover"
             />
           </SwiperSlide>
         ))}
