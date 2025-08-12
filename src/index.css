@@ -45,6 +45,12 @@ html{
 .text-black-400{
   color: rgb(49, 49, 49);
 }
+.scroll-hide{
+  scrollbar-width: 0;
+}
+.scroll-hide::-webkit-scrollbar-button{
+  display: none;
+}
 .my-transition-transform{
   transition-property: transform;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);

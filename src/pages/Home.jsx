@@ -1,73 +1,184 @@
-
 import HeroCarousel from '../components/home/HeroCarousel';
-import CategoryGrid from '../components/home/CategoryGrid';
 import DealCard from '../components/deals/DealCard';
-import { getFeaturedProducts } from '../data/phones'; // Changed import to existing data file
-
-/*import dealPhone from '../assets/img/Artboard_1_copy_2.png';
-import dealLaptop from '../assets/img/Artboard_1_copy_3.png';
-import dealPowerbank from '../assets/img/Powerbank-1.jpg';
-import dealHeadphone from '../assets/img/Headphone-1.jpg';
-import dealSpeaker from '../assets/img/Portable_speaker-1.jpg';
-import dealCharger from '../assets/img/Phone_charger-1.jpg';
-import dealSmartwatch from '../assets/img/Smartwatch-1.jpg';
-import dealFlashdrive from '../assets/img/clipper.jpg';
-
-const deals = [
-  { name: 'Phone deals', to: '/phone-deals', img: dealPhone },
-  { name: 'Laptops deals', to: '/laptop-deals', img: dealLaptop },
-  { name: 'Power Banks deals', to: '/powerbank-deals', img: dealPowerbank },
-  { name: 'Head Phones deals', to: '/headphone-deals', img: dealHeadphone },
-  { name: 'Speaker deals', to: '/speaker-deals', img: dealSpeaker },
-  { name: 'Charger deals', to: '/charger-deals', img: dealCharger },
-  { name: 'Smart Watch deals', to: '/smartwatch-deals', img: dealSmartwatch },
-  { name: 'Flash Drives deals', to: '/flashdrive-deals', img: dealFlashdrive },
-];*/
+import { getFeaturedProducts, getNewArrivals, getTopBrandProducts } from '../data/phones';
+import { getLaptopBrands } from '../data/laptops';
+import { Link } from 'react-router-dom';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination } from 'swiper/modules';
+import phone from '../assets/img/Artboard_1_copy_2.png';
+import laptop from '../assets/img/Artboard_1_copy_3.png';
+import accessories from '../assets/img/Artboard_1_copy_7.png';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import { ArrowLeft, ChevronLeft, ChevronRight, MoveLeft, PanelLeft, ToggleLeft } from 'lucide-react';
 
 export default function Home() {
-  const featuredProducts = getFeaturedProducts();
+  const bestSelling = getFeaturedProducts();
+  const newArrivals = getNewArrivals();
+  const topBrands = getTopBrandProducts();
+  const categories = [
+    { name: 'Laptops', image: laptop },
+    { name: 'Phones', image: phone},
+    { name: 'Watches', image: accessories }
+  ];
 
   return (
-    <div className="dark:bg-gray-900 min-h-screen bg-gold">
-      {/* Hero Carousel */}
+    <div className="bg-white text-gray-900">
+      {/* Hero */}
       <HeroCarousel />
 
-      {/* Categories Section */}
-      <section className="container mx-auto px-4 py-8">
-        <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-6">
-          Shop by Category
-        </h2>
-        <CategoryGrid />
+      {/* Best Selling Product */}
+      <section className="mx-auto px-4 py-10">
+        <div className='container mx-auto'>
+          <div className="flex justify-between items-center mb-6">
+            <h2 className="text-2xl font-bold">Best Selling Product</h2>
+            <Link to="/products" className="text-sm hover:underline">
+              View more
+            </Link>
+          </div>
+        </div>  
+
+        <div className='md:flex md:flex-row gap-2'>
+          <button className="hidden md:block custom-prev cursor-pointer bg-transparent ">
+            <ChevronLeft size={60} className='-mx-2' />
+          </button>
+
+          <Swiper
+            modules={[Navigation, Pagination]}
+            pagination={{
+              clickable: true,
+              el: '.custom-pagination',
+            }}
+            navigation={{
+              nextEl: '.custom-next',
+              prevEl: '.custom-prev',
+            }}
+            breakpoints={{
+              320: { slidesPerView: 2, spaceBetween: 12 }, // mobile peek
+              375: { slidesPerView: 2, spaceBetween: 14 }, // large phones
+              425: { slidesPerView: 2, spaceBetween: 16 }, // small tablets
+              480: { slidesPerView: 2, spaceBetween: 14 }, // small tablets
+              640: { slidesPerView: 2.5, spaceBetween: 16 }, // large phones / small tablets
+              768: { slidesPerView: 3, spaceBetween: 18 }, // tablets
+              1024: { slidesPerView: 4, spaceBetween: 20 }, // desktop
+              1280: { slidesPerView: 5, spaceBetween: 24 }, // large desktop
+            }}
+            className="max-w-[95%] md:max-w-[90%] mx-auto"
+          >
+            {bestSelling.map((product) => (
+              <SwiperSlide key={product.id}>
+                <DealCard product={product} />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+
+          <button className="hidden md:block custom-next cursor-pointer">
+            <ChevronRight size={60} className='-mx-2'/>
+          </button>
+        </div>  
+          {/* Custom Pagination */}
+        <div className='flex justify-between md:justify-center mt-3'>
+          <button className="block md:hidden custom-prev cursor-pointer bg-transparent ">
+            <ChevronLeft size={50} className='-mx-2' />
+          </button>
+
+          <div className='bg-ash/40 w-fit h-fit px-4 py-1 rounded-2xl'>
+            <div className="custom-pagination"/>
+          </div>
+
+          <button className="block md:hidden custom-next cursor-pointer">
+            <ChevronRight size={50} className='-mx-2'/>
+          </button>
+        </div>  
+
+        
       </section>
 
-      {/* Featured Products */}
-      <section className="container mx-auto px-4 py-8">
-        <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-6">
-          Featured Products
-        </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {featuredProducts.map(product => (
-            <DealCard 
-              key={product.id} 
-              product={product} 
-              type={product.type}
-            />
+      {/* Discover Our Offers */}
+      <section className="bg-gray-700 text-white py-10">
+        <div className="container mx-auto px-4 flex flex-wrap justify-around gap-6 text-center">
+          <div>
+            <img src="/img/offer-headphones.jpg" alt="Headphones" className="w-28 mx-auto" />
+            <p className="mt-2">Headphones</p>
+          </div>
+          <div>
+            <img src="/img/offer-phone.jpg" alt="Smartphones" className="w-28 mx-auto" />
+            <p className="mt-2">Smartphones</p>
+          </div>
+          <div>
+            <img src="/img/offer-laptop.jpg" alt="Laptops" className="w-28 mx-auto" />
+            <p className="mt-2">Laptops</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Categories */}
+      <section className="container mx-auto px-4 pt-10 ">
+          <div className="flex justify-between items-center mb-6">
+            <h2 className="text-2xl font-bold">Categories</h2>
+            <Link to="/categories" className="text-sm hover:underline">
+              View more
+            </Link>
+          </div>
+        <div className="grid grid-cols-3 gap-4">
+          {categories?.map((cat, idx) => (
+            <div key={idx} className="text-center rounded-lg overflow-hidden relative hover:shadow-xl cursor-pointer">
+              <img src={cat.image} alt={cat.name} className="w-full h-20 md:h-40 object-cover group-hover:shadow-md" />
+              <div className='bg-ash/80 bottom-0 absolute w-full py-0.5 md:py-1.5'>
+                <p className="text-white font-medium text-base">{cat.name}</p>
+              </div>
+            </div>
           ))}
         </div>
       </section>
 
-      {/* Special Offers */}
-      <section className="bg-light-orange dark:bg-dark-orange text-white py-12">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-4">Special Offers</h2>
-          <p className="text-xl mb-6">
-            Get 10% off on all accessories this week!
-          </p>
-          <button className="bg-white text-light-orange px-6 py-2 rounded-md font-medium hover:bg-gray-100 transition-colors">
-            Shop Now
-          </button>
+      {/* New Arrivals */}
+      <section className="container mx-auto px-4 py-10">
+        <div className="flex justify-between items-center mb-6">
+          <h2 className="text-2xl font-bold">New Arrival</h2>
+          <Link to="/categories" className="text-sm hover:underline">
+            View more
+          </Link>
+        </div>
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
+          {newArrivals.map(product => (
+            <DealCard key={product.id} product={product} />
+          ))}
         </div>
       </section>
+
+      {/* Top Brand Products */}
+      <section className="container mx-auto px-4 py-10">
+        <div className="flex justify-between items-center mb-6">
+          <h2 className="text-2xl font-bold">Top Branded Products </h2>
+          <Link to="/categories" className="text-sm hover:underline">
+            View more
+          </Link>
+        </div>
+        <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 gap-6">
+          {topBrands.map(product => (
+            <DealCard key={product.id} product={product} />
+          ))}
+        </div>
+      </section>
+
+      {/* Newsletter Signup */}
+      <section className="bg-gray-800 text-white py-10">
+        <div className="container mx-auto px-4 text-center">
+          <h3 className="text-2xl font-bold mb-4">Sign up to Newsletter</h3>
+          <p className="mb-6">Get latest news, updates and deals directly mailed to your inbox.</p>
+          <form className="flex justify-center gap-2">
+            <input type="email" placeholder="Your email address here" className="px-4 py-2 rounded-lg w-64 text-black" />
+            <button type="submit" className="bg-blue-500 px-6 py-2 rounded-lg font-medium">SIGN UP</button>
+          </form>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-gray-900 text-gray-300 py-6 text-center text-sm">
+        <p>©2025 Gadgetshop. Shop With Us</p>
+      </footer>
     </div>
   );
 }
