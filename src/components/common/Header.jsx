@@ -11,12 +11,12 @@ export default function Header() {
         <Link to='/' id='logo' className='flex items-center flex-row outline-none  '>
           <img 
             src={logo}
-            alt="Fabulous Gadgets"
+            alt="Alpha Tech"
             className="h-14 w-fit md:-mx-2"
           />
           <Link to='/' className='outline-none hidden md:block '>
-            <p className='text-xl font-medium text-gray-800'>FABULOUS</p>
-            <p className='text-sm text-ash'>GADGETS AND ACCESSORIES</p>
+            <p className='text-xl font-medium text-gray-800'>Alpha Tech</p>
+            {/* <p className='text-sm text-ash'>GADGETS AND ACCESSORIES</p> */}
           </Link>
         </Link>
 
