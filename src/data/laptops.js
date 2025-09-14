@@ -3,14 +3,14 @@ const laptopBrands = {
   hp: {
     name: 'HP',
     id: 'hp',
-    logo: '/img/hp-logo.png',
+    logo: '/src/assets/img/hp-laptops_300x400.png',
     products: [
       {
         id: 'hp-envy-x360',
         name: 'HP Envy x360',
         detailedName: 'HP Envy x360 15.6" Touchscreen Laptop - AMD Ryzen 7',
         price: '850,000',
-        image: '/img/hp-envy-x360.jpg',
+        image: '/src/assets/img/hp-elitebook.jpg',
         specs: {
           processor: 'AMD Ryzen 7 5825U',
           memory: '16GB DDR4',
@@ -23,7 +23,7 @@ const laptopBrands = {
         name: 'HP Pavilion',
         detailedName: 'HP Pavilion 14" Laptop - Intel Core i5',
         price: '720,000',
-        image: '/img/hp-pavilion.jpg',
+        image: '/src/assets/img/hp-elitebook.jpg',
         specs: {
           processor: 'Intel Core i5-1135G7',
           memory: '8GB DDR4',
@@ -36,14 +36,14 @@ const laptopBrands = {
   dell: {
     name: 'Dell',
     id: 'dell',
-    logo: '/img/dell-logo.png',
+    logo: '/src/assets/img/dell-laptop_300x400.png',
     products: [
       {
         id: 'dell-xps-13',
         name: 'Dell XPS 13',
         detailedName: 'Dell XPS 13 13.4" Laptop - Intel Core i7',
         price: '1,150,000',
-        image: '/img/dell-xps-13.jpg',
+        image: '/src/assets/img/hp-elitebook.jpg',
         specs: {
           processor: 'Intel Core i7-1195G7',
           memory: '16GB LPDDR4x',
@@ -56,14 +56,14 @@ const laptopBrands = {
   lenovo: {
     name: 'Lenovo',
     id: 'lenovo',
-    logo: '/img/lenovo-logo.png',
+    logo: '/src/assets/img/lenovo-laptops_300x400.png',
     products: [
       {
         id: 'lenovo-ideapad',
         name: 'Lenovo IdeaPad',
         detailedName: 'Lenovo IdeaPad 5 14" Laptop - AMD Ryzen 5',
         price: '680,000',
-        image: '/img/lenovo-ideapad.jpg',
+        image: '/src/assets/img/hp-elitebook.jpg',
         specs: {
           processor: 'AMD Ryzen 5 5500U',
           memory: '8GB DDR4',
@@ -75,7 +75,16 @@ const laptopBrands = {
   }
 };
 
-export const getLaptopBrands = () => Object.values(laptopBrands).map(({ name, id, logo }) => ({ name, id, logo }));
+export const getLaptopBrands = () => Object.values(laptopBrands).map(({ name, id, logo, products }) => ({ name, id, logo, products }));
+
+export const getAllLaptopProducts = () => {
+  return Object.values(laptopBrands)
+    .flatMap(brand => brand.products)
+    .map(product => ({
+      ...product,
+      type: 'laptop',
+    }));
+};
 
 export const getBrandById = (id) => laptopBrands[id];
 

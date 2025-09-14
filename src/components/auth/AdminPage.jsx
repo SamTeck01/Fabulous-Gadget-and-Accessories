@@ -1,20 +1,24 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Plus, Edit, Trash2, LogOut } from 'lucide-react';
+import { getFeaturedProducts } from '../../data/phones';
+import { getLaptopBrands } from '../../data/laptops';
 
 export default function AdminPage() {
   const [activeTab, setActiveTab] = useState('products');
   const [products, setProducts] = useState([]);
-  //const [isLoading, setIsLoading] = useState(false);
-
-  // Mock data - replace with actual API calls
-  const mockProducts = [
-    { id: 1, name: 'iPhone 15 Pro Max', price: '2,080,000', stock: 5 },
-    { id: 2, name: 'Samsung Galaxy S23 Ultra', price: '1,250,000', stock: 8 },
+  
+  // Get actual products from data
+  const phoneProducts = getFeaturedProducts();
+  const laptopBrands = getLaptopBrands();
+  
+  // Combine all products for admin view
+  const allProducts = [
+    ...phoneProducts.map(p => ({ ...p, category: 'Phone' })),
+    // Add laptop products when available
   ];
 
   const handleDelete = (id) => {
-    // Confirm before deleting
     if (window.confirm('Are you sure you want to delete this product?')) {
       setProducts(products.filter(product => product.id !== id));
     }
@@ -68,12 +72,12 @@ export default function AdminPage() {
               <h2 className="text-xl font-semibold text-gray-800 dark:text-white">
                 Product Management
               </h2>
-              <Link
-                to="/admin/add-product"
+              <button
                 className="bg-light-orange hover:bg-dark-orange text-white px-4 py-2 rounded-md flex items-center"
+                onClick={() => alert('Add Product functionality coming soon!')}
               >
                 <Plus className="mr-1" /> Add Product
-              </Link>
+              </button>
             </div>
 
             {/* Products Table */}
@@ -88,10 +92,10 @@ export default function AdminPage() {
                       Name
                     </th>
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
-                      Price
+                      Category
                     </th>
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
-                      Stock
+                      Price
                     </th>
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
                       Actions
@@ -99,22 +103,25 @@ export default function AdminPage() {
                   </tr>
                 </thead>
                 <tbody className="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
-                  {mockProducts.map((product) => (
+                  {allProducts.map((product, index) => (
                     <tr key={product.id}>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-300">
-                        {product.id}
+                        {index + 1}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">
                         {product.name}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-300">
-                        ₦{product.price}
+                        {product.category || 'Phone'}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-300">
-                        {product.stock}
+                        ₦{product.price}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                        <button className="text-blue-600 hover:text-blue-900 mr-4">
+                        <button 
+                          className="text-blue-600 hover:text-blue-900 mr-4"
+                          onClick={() => alert('Edit functionality coming soon!')}
+                        >
                           <Edit />
                         </button>
                         <button 
@@ -139,8 +146,14 @@ export default function AdminPage() {
             </h2>
             <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow">
               <p className="text-gray-600 dark:text-gray-300">
-                Order management content will go here
+                Order management system will be implemented here. This would include:
               </p>
+              <ul className="mt-4 text-gray-600 dark:text-gray-300 list-disc list-inside">
+                <li>View all orders</li>
+                <li>Update order status</li>
+                <li>Process refunds</li>
+                <li>Generate reports</li>
+              </ul>
             </div>
           </div>
         )}

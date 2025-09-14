@@ -1,7 +1,6 @@
 import HeroCarousel from '../components/home/HeroCarousel';
 import DealCard from '../components/deals/DealCard';
 import { getFeaturedProducts, getNewArrivals, getTopBrandProducts } from '../data/phones';
-import { getLaptopBrands } from '../data/laptops';
 import { Link } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination } from 'swiper/modules';
@@ -18,13 +17,13 @@ export default function Home() {
   const newArrivals = getNewArrivals();
   const topBrands = getTopBrandProducts();
   const categories = [
-    { name: 'Laptops', image: laptop },
-    { name: 'Phones', image: phone},
-    { name: 'Watches', image: accessories }
+    { name: 'Laptops', image: laptop, link: '/laptop-deals' },
+    { name: 'Phones', image: phone, link: '/phone-deals'},
+    { name: 'Accessories', image: accessories, link: '/phone-deals' } // Default to phones for now
   ];
 
   return (
-    <div className="bg-white text-gray-900">
+    <div className="bg-white dark:bg-gray-900 text-gray-900 dark:text-white">
       {/* Hero */}
       <HeroCarousel />
 
@@ -32,8 +31,8 @@ export default function Home() {
       <section className="mx-auto px-4 py-10">
         <div className='container mx-auto'>
           <div className="flex justify-between items-center mb-6">
-            <h2 className="text-2xl font-bold">Best Selling Product</h2>
-            <Link to="/products" className="text-sm hover:underline">
+            <h2 className="text-2xl font-bold dark:text-white">Best Selling Product</h2>
+            <Link to="/phone-deals" className="text-sm hover:underline text-light-orange">
               View more
             </Link>
           </div>
@@ -68,7 +67,7 @@ export default function Home() {
           >
             {bestSelling.map((product) => (
               <SwiperSlide key={product.id}>
-                <DealCard product={product} />
+                <DealCard product={{...product, brand: 'apple'}} />
               </SwiperSlide>
             ))}
           </Swiper>
@@ -96,18 +95,18 @@ export default function Home() {
       </section>
 
       {/* Discover Our Offers */}
-      <section className="bg-gray-700 text-white py-10">
+      <section className="bg-gray-700 dark:bg-gray-800 text-white py-10">
         <div className="container mx-auto px-4 flex flex-wrap justify-around gap-6 text-center">
           <div>
-            <img src="/img/offer-headphones.jpg" alt="Headphones" className="w-28 mx-auto" />
+            <img src="/src/assets/img/Headphone-1.jpg" alt="Headphones" className="w-28 mx-auto" />
             <p className="mt-2">Headphones</p>
           </div>
           <div>
-            <img src="/img/offer-phone.jpg" alt="Smartphones" className="w-28 mx-auto" />
+            <img src="/src/assets/img/iphone-15-promax.jpg" alt="Smartphones" className="w-28 mx-auto" />
             <p className="mt-2">Smartphones</p>
           </div>
           <div>
-            <img src="/img/offer-laptop.jpg" alt="Laptops" className="w-28 mx-auto" />
+            <img src="/src/assets/img/hp-elitebook.jpg" alt="Laptops" className="w-28 mx-auto" />
             <p className="mt-2">Laptops</p>
           </div>
         </div>
@@ -116,19 +115,23 @@ export default function Home() {
       {/* Categories */}
       <section className="container mx-auto px-4 pt-10 ">
           <div className="flex justify-between items-center mb-6">
-            <h2 className="text-2xl font-bold">Categories</h2>
-            <Link to="/categories" className="text-sm hover:underline">
+            <h2 className="text-2xl font-bold dark:text-white">Categories</h2>
+            <Link to="/phone-deals" className="text-sm hover:underline text-light-orange">
               View more
             </Link>
           </div>
         <div className="grid grid-cols-3 gap-4">
           {categories?.map((cat, idx) => (
-            <div key={idx} className="text-center rounded-lg overflow-hidden relative hover:shadow-xl cursor-pointer">
-              <img src={cat.image} alt={cat.name} className="w-full h-20 md:h-40 object-cover group-hover:shadow-md" />
+            <Link 
+              key={idx} 
+              to={cat.link}
+              className="text-center rounded-lg overflow-hidden relative hover:shadow-xl cursor-pointer group"
+            >
+              <img src={cat.image} alt={cat.name} className="w-full h-20 md:h-40 object-cover group-hover:shadow-md transition-shadow" />
               <div className='bg-ash/80 bottom-0 absolute w-full py-0.5 md:py-1.5'>
                 <p className="text-white font-medium text-base">{cat.name}</p>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </section>
@@ -136,14 +139,14 @@ export default function Home() {
       {/* New Arrivals */}
       <section className="container mx-auto px-4 py-10">
         <div className="flex justify-between items-center mb-6">
-          <h2 className="text-2xl font-bold">New Arrival</h2>
-          <Link to="/categories" className="text-sm hover:underline">
+          <h2 className="text-2xl font-bold dark:text-white">New Arrival</h2>
+          <Link to="/phone-deals" className="text-sm hover:underline text-light-orange">
             View more
           </Link>
         </div>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
           {newArrivals.map(product => (
-            <DealCard key={product.id} product={product} />
+            <DealCard key={product.id} product={{...product, brand: 'apple'}} />
           ))}
         </div>
       </section>
@@ -151,32 +154,32 @@ export default function Home() {
       {/* Top Brand Products */}
       <section className="container mx-auto px-4 py-10">
         <div className="flex justify-between items-center mb-6">
-          <h2 className="text-2xl font-bold">Top Branded Products </h2>
-          <Link to="/categories" className="text-sm hover:underline">
+          <h2 className="text-2xl font-bold dark:text-white">Top Branded Products </h2>
+          <Link to="/phone-deals" className="text-sm hover:underline text-light-orange">
             View more
           </Link>
         </div>
         <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 gap-6">
           {topBrands.map(product => (
-            <DealCard key={product.id} product={product} />
+            <DealCard key={product.id} product={{...product, brand: 'apple'}} />
           ))}
         </div>
       </section>
 
       {/* Newsletter Signup */}
-      <section className="bg-gray-800 text-white py-10">
+      <section className="bg-gray-800 dark:bg-gray-900 text-white py-10">
         <div className="container mx-auto px-4 text-center">
           <h3 className="text-2xl font-bold mb-4">Sign up to Newsletter</h3>
           <p className="mb-6">Get latest news, updates and deals directly mailed to your inbox.</p>
           <form className="flex justify-center gap-2">
             <input type="email" placeholder="Your email address here" className="px-4 py-2 rounded-lg w-64 text-black" />
-            <button type="submit" className="bg-blue-500 px-6 py-2 rounded-lg font-medium">SIGN UP</button>
+            <button type="submit" className="bg-light-orange hover:bg-dark-orange px-6 py-2 rounded-lg font-medium transition-colors">SIGN UP</button>
           </form>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-gray-300 py-6 text-center text-sm">
+      <footer className="bg-gray-900 dark:bg-black text-gray-300 py-6 text-center text-sm">
         <p>©2025 Gadgetshop. Shop With Us</p>
       </footer>
     </div>

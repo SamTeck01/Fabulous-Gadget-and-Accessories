@@ -56,7 +56,7 @@ export default function AdminLogin() {
       return;
     }
 
-    navigate('/adminPage');
+    navigate('/admin-page');
   };
 
   const handleChange = (e) => {

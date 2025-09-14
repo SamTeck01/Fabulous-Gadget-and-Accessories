@@ -49,7 +49,7 @@ export default function LaptopSession() {
         {brandData.products.map(product => (
           <ProductCard 
             key={product.id} 
-            product={product} 
+            product={{...product, brand: brand}} 
             type="laptop"
           />
         ))}

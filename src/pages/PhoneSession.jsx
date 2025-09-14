@@ -50,7 +50,7 @@ export default function PhoneSession() {
         {brandData.products.map(product => (
           <ProductCard 
             key={product.id} 
-            product={product} 
+            product={{...product, brand: brand}} 
             type="phone"
           />
         ))}

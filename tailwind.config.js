@@ -10,12 +10,15 @@ export default {
       'text-gold2',
     ],
   },
+  darkMode: 'class',
   theme: {
     extend: {
       colors: {
         primary: '#f0f2f5',
         secondary: '#ff813f',
         tertiary: '#222222',
+        'light-orange': '#ff813f',
+        'dark-orange': '#e6733a',
         slate: {
           10: '#f1f3f4',
         },

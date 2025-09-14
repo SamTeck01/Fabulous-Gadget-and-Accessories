@@ -2,8 +2,8 @@ import { Link } from 'react-router-dom';
 
 export default function DealCard({ product, type = 'phone' }) {
   return (
-    <div className="bg-white mb-4 w-full sm:w-44 md:w-56 lg:w-60 shrink-0 dark:bg-gray-800 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow">
-      <Link to={`/${type}-deals/${product.id}`} className="block">
+    <div className="bg-white dark:bg-gray-800 mb-4 w-full sm:w-44 md:w-56 lg:w-60 shrink-0 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow">
+      <Link to={`/${type}-deals/${product.brand || 'unknown'}/${product.id}`} className="block">
         <div className="aspect-[4/3] overflow-hidden">
           <img
             src={product.image}
