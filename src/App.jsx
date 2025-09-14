@@ -6,17 +6,20 @@ import PhoneSession from './pages/PhoneSession';
 import LaptopDeals from './pages/LaptopDeals';
 import LaptopSession from './pages/LaptopSession';
 import ProductDetail from './pages/ProductDetail';
+import SearchResults from './pages/SearchResults';
 import AdminLogin from './components/auth/AdminLogin';
 import AdminPage from './components/auth/AdminPage';
 import NotFound from './components/common/NotFound';
 import { CartProvider } from './context/CartContext';
 import { ThemeProvider } from './context/ThemeContext';
+import { AuthProvider } from './context/AuthContext';
 
 export default function App() {
   return (
     <ThemeProvider>
-      <CartProvider>
-        <BrowserRouter>
+      <AuthProvider>
+        <CartProvider>
+          <BrowserRouter>
           <Header/>
           <Routes>
             <Route path="/">
@@ -31,13 +34,15 @@ export default function App() {
                 <Route path=":brand" element={<LaptopSession />} />
                 <Route path=":brand/:productId" element={<ProductDetail />} />
               </Route>
+              <Route path="search" element={<SearchResults />} />
               <Route path="admin-login" element={<AdminLogin />} />
               <Route path="admin-page" element={<AdminPage />} />
               <Route path="*" element={<NotFound />} />
             </Route>
           </Routes>
-        </BrowserRouter>
-      </CartProvider>
+          </BrowserRouter>
+        </CartProvider>
+      </AuthProvider>
     </ThemeProvider>
   );
 }

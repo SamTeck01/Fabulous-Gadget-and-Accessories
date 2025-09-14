@@ -35,9 +35,21 @@ export default function GlobalSearch({ isOpen, onClose }) {
     setSearchTerm('');
   };
 
+  const handleSearchSubmit = () => {
+    if (searchTerm.trim()) {
+      navigate(`/search?q=${encodeURIComponent(searchTerm)}`);
+      onClose();
+      setSearchTerm('');
+    }
+  };
+
   const handleKeyPress = (e) => {
-    if (e.key === 'Enter' && results.length > 0) {
-      handleProductClick(results[0]);
+    if (e.key === 'Enter') {
+      if (results.length > 0) {
+        handleProductClick(results[0]);
+      } else {
+        handleSearchSubmit();
+      }
     }
   };
 
@@ -74,7 +86,13 @@ export default function GlobalSearch({ isOpen, onClose }) {
             </div>
           ) : results.length === 0 ? (
             <div className="p-4 text-center text-gray-500">
-              No products found for "{searchTerm}"
+              <p className="mb-4">No products found for "{searchTerm}"</p>
+              <button
+                onClick={handleSearchSubmit}
+                className="px-4 py-2 bg-light-orange text-white rounded-lg hover:bg-dark-orange transition-colors"
+              >
+                View All Results
+              </button>
             </div>
           ) : (
             <div className="p-2">

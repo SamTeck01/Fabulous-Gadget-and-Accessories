@@ -19,6 +19,7 @@ export default {
         tertiary: '#222222',
         'light-orange': '#ff813f',
         'dark-orange': '#e6733a',
+        'orange-dark': '#d65a2a',
         slate: {
           10: '#f1f3f4',
         },
@@ -36,6 +37,14 @@ export default {
           50: '#585858',
           90: '#141414',
         },
+        // Custom dark mode colors that match the orange theme
+        dark: {
+          primary: '#1a1a1a',
+          secondary: '#2d2d2d',
+          accent: '#ff813f',
+          text: '#f5f5f5',
+          muted: '#a0a0a0',
+        }
       },
       screens: {
         xs: '400px',

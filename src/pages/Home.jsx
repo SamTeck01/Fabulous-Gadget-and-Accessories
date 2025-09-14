@@ -23,7 +23,7 @@ export default function Home() {
   ];
 
   return (
-    <div className="bg-white dark:bg-gray-900 text-gray-900 dark:text-white">
+    <div className="bg-white dark:bg-dark-primary text-gray-900 dark:text-dark-text">
       {/* Hero */}
       <HeroCarousel />
 
@@ -31,8 +31,8 @@ export default function Home() {
       <section className="mx-auto px-4 py-10">
         <div className='container mx-auto'>
           <div className="flex justify-between items-center mb-6">
-            <h2 className="text-2xl font-bold dark:text-white">Best Selling Product</h2>
-            <Link to="/phone-deals" className="text-sm hover:underline text-light-orange">
+            <h2 className="text-2xl font-bold dark:text-dark-text">Best Selling Product</h2>
+            <Link to="/phone-deals" className="text-sm hover:underline text-light-orange dark:text-dark-accent">
               View more
             </Link>
           </div>
@@ -95,7 +95,7 @@ export default function Home() {
       </section>
 
       {/* Discover Our Offers */}
-      <section className="bg-gray-700 dark:bg-gray-800 text-white py-10">
+      <section className="bg-gray-700 dark:bg-dark-secondary text-white py-10">
         <div className="container mx-auto px-4 flex flex-wrap justify-around gap-6 text-center">
           <div>
             <img src="/src/assets/img/Headphone-1.jpg" alt="Headphones" className="w-28 mx-auto" />
@@ -115,8 +115,8 @@ export default function Home() {
       {/* Categories */}
       <section className="container mx-auto px-4 pt-10 ">
           <div className="flex justify-between items-center mb-6">
-            <h2 className="text-2xl font-bold dark:text-white">Categories</h2>
-            <Link to="/phone-deals" className="text-sm hover:underline text-light-orange">
+            <h2 className="text-2xl font-bold dark:text-dark-text">Categories</h2>
+            <Link to="/phone-deals" className="text-sm hover:underline text-light-orange dark:text-dark-accent">
               View more
             </Link>
           </div>
