@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Search, X } from 'lucide-react';
 import { getFeaturedProducts } from '../../data/phones';
@@ -10,10 +10,10 @@ export default function GlobalSearch({ isOpen, onClose }) {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
-  const allProducts = [
+  const allProducts = useMemo(() => [
     ...getFeaturedProducts().map(p => ({ ...p, type: 'phone', category: 'Phones' })),
     ...getAllLaptopProducts().map(p => ({ ...p, type: 'laptop', category: 'Laptops' }))
-  ];
+  ], []);
 
   useEffect(() => {
     if (searchTerm.length > 2) {

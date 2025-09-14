@@ -19,24 +19,34 @@ export default function Header() {
 
   return (
     <>
-      <header className="bg-white dark:bg-gray-800 shadow-md sticky top-0 z-40">
-        <div className="container mx-auto px-4 py-3 grid grid-cols-3 items-center">
+      <header className="bg-white dark:bg-ash shadow-md sticky top-0 z-40">
+        <div className="container mx-auto px-4 py-3 grid grid-cols-2 lg:grid-cols-3 items-center">
           {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsSidebarOpen(true)}
-            className="lg:hidden p-2 text-gray-700 dark:text-gray-200 hover:text-light-orange transition-colors"
-          >
-            <Menu className="w-6 h-6" />
-          </button>
+          <div className='lg:hidden flex flex-row'>
+            <button
+              onClick={() => setIsSidebarOpen(true)}
+              className="p-2 text-gray-700 dark:text-gray-200 hover:text-light-orange transition-colors"
+            >
+              <Menu className="w-6 h-6" />
+            </button>
+
+            <Link to='/' id='logo' className='w-fit p-0'>
+              <img 
+                src={logo}
+                alt="Alpha Tech"
+                className="h-14 w-fit "
+              />
+            </Link>
+          </div>  
 
           {/* Logo */}
-          <Link to='/' id='logo' className='flex items-center flex-row outline-none justify-center lg:justify-start'>
+          <Link to='/' id='logo' className=' hidden lg:flex items-center flex-row outline-none justify-start space-x-4'>
             <img 
               src={logo}
               alt="Alpha Tech"
               className="h-14 w-fit"
             />
-            <span className='outline-none hidden md:block ml-2'>
+            <span className='outline-none '>
               <p className='text-xl font-medium text-gray-800 dark:text-white'>Alpha Tech</p>
             </span>
           </Link>

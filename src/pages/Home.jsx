@@ -76,7 +76,8 @@ export default function Home() {
             <ChevronRight size={60} className='-mx-2'/>
           </button>
         </div>  
-          {/* Custom Pagination */}
+        
+        {/* Custom Pagination */}
         <div className='flex justify-between md:justify-center mt-3'>
           <button className="block md:hidden custom-prev cursor-pointer bg-transparent ">
             <ChevronLeft size={50} className='-mx-2' />
@@ -90,8 +91,6 @@ export default function Home() {
             <ChevronRight size={50} className='-mx-2'/>
           </button>
         </div>  
-
-        
       </section>
 
       {/* Discover Our Offers */}
@@ -144,7 +143,7 @@ export default function Home() {
             View more
           </Link>
         </div>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
           {newArrivals.map(product => (
             <DealCard key={product.id} product={{...product, brand: 'apple'}} />
           ))}
@@ -155,11 +154,11 @@ export default function Home() {
       <section className="container mx-auto px-4 py-10">
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-2xl font-bold dark:text-white">Top Branded Products </h2>
-          <Link to="/phone-deals" className="text-sm hover:underline text-light-orange">
+          <Link to="/phone-deals" className="text-sm hover:underline text-gold2">
             View more
           </Link>
         </div>
-        <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
           {topBrands.map(product => (
             <DealCard key={product.id} product={{...product, brand: 'apple'}} />
           ))}
@@ -172,8 +171,8 @@ export default function Home() {
           <h3 className="text-2xl font-bold mb-4">Sign up to Newsletter</h3>
           <p className="mb-6">Get latest news, updates and deals directly mailed to your inbox.</p>
           <form className="flex justify-center gap-2">
-            <input type="email" placeholder="Your email address here" className="px-4 py-2 rounded-lg w-64 text-black" />
-            <button type="submit" className="bg-light-orange hover:bg-dark-orange px-6 py-2 rounded-lg font-medium transition-colors">SIGN UP</button>
+            <input type="email" placeholder="Your email address here" className="px-4 py-2 rounded-lg w-64 text-gold" />
+            <button type="submit" className="bg-gold2 hover:bg-gold2/80 px-6 py-2 rounded-lg font-medium transition-colors">SIGN UP</button>
           </form>
         </div>
       </section>
