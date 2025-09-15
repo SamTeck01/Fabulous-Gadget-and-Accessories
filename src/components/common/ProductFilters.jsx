@@ -2,12 +2,15 @@ import { useEffect, useMemo, useState } from 'react';
 
 export default function ProductFilters({
   products = [],
+  brands = [], // optional: [{id, name}]
   value = {},
   onChange = () => {},
   className = ''
 }) {
   const [minPrice, setMinPrice] = useState('');
   const [maxPrice, setMaxPrice] = useState('');
+  const [selectedBrands, setSelectedBrands] = useState(Array.isArray(value.brands) ? value.brands : []);
+  // sort is handled at page level (top bar), keep passthrough support if provided
   const [sortBy, setSortBy] = useState(value.sortBy || 'relevance');
 
   const parsedPrices = useMemo(() => {
@@ -25,67 +28,94 @@ export default function ProductFilters({
     setMinPrice(value.minPrice ?? '');
     setMaxPrice(value.maxPrice ?? '');
     setSortBy(value.sortBy || 'relevance');
-  }, [value.minPrice, value.maxPrice, value.sortBy]);
+    setSelectedBrands(Array.isArray(value.brands) ? value.brands : []);
+  }, [value.minPrice, value.maxPrice, value.sortBy, value.brands]);
 
   const emitChange = (next) => {
     onChange({
       minPrice: next.minPrice ?? minPrice,
       maxPrice: next.maxPrice ?? maxPrice,
+      brands: next.brands ?? selectedBrands,
       sortBy: next.sortBy ?? sortBy
     });
   };
 
   return (
-    <div className={`bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-md p-4 ${className}`}>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-end">
-        <div>
-          <label className="block text-sm text-gray-600 dark:text-gray-300 mb-1">Min price</label>
+    <div className={`bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-md p-0 ${className}`}>
+      <div className="px-4 py-3 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between">
+        <h3 className="text-sm font-semibold text-gray-800 dark:text-gray-100 uppercase tracking-wide">Filters</h3>
+        <button
+          onClick={() => {
+            setMinPrice('');
+            setMaxPrice('');
+            setSelectedBrands([]);
+            emitChange({ minPrice: '', maxPrice: '', brands: [] });
+          }}
+          className="text-xs text-gold2 hover:underline"
+        >
+          Clear all
+        </button>
+      </div>
+
+      {/* Price Section */}
+      <div className="px-4 py-3 border-b border-gray-200 dark:border-gray-700">
+        <h4 className="text-sm font-semibold text-gray-800 dark:text-gray-100 mb-3">Price (₦)</h4>
+        <div className="grid grid-cols-2 gap-3">
           <input
             type="number"
             inputMode="numeric"
             min={0}
-            placeholder={parsedPrices.min ? `${parsedPrices.min}` : '0'}
+            placeholder={parsedPrices.min ? `${parsedPrices.min}` : 'Min'}
             value={minPrice}
             onChange={(e) => {
               setMinPrice(e.target.value);
               emitChange({ minPrice: e.target.value });
             }}
-            className="w-full px-3 py-2 rounded-md border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-gold2 dark:bg-gray-700 dark:text-white"
+            className="w-full px-3 py-2 text-sm rounded-md border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-gold2 dark:bg-gray-700 dark:text-white"
           />
-        </div>
-        <div>
-          <label className="block text-sm text-gray-600 dark:text-gray-300 mb-1">Max price</label>
           <input
             type="number"
             inputMode="numeric"
             min={0}
-            placeholder={parsedPrices.max ? `${parsedPrices.max}` : ''}
+            placeholder={parsedPrices.max ? `${parsedPrices.max}` : 'Max'}
             value={maxPrice}
             onChange={(e) => {
               setMaxPrice(e.target.value);
               emitChange({ maxPrice: e.target.value });
             }}
-            className="w-full px-3 py-2 rounded-md border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-gold2 dark:bg-gray-700 dark:text-white"
+            className="w-full px-3 py-2 text-sm rounded-md border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-gold2 dark:bg-gray-700 dark:text-white"
           />
         </div>
-        <div>
-          <label className="block text-sm text-gray-600 dark:text-gray-300 mb-1">Sort by</label>
-          <select
-            value={sortBy}
-            onChange={(e) => {
-              setSortBy(e.target.value);
-              emitChange({ sortBy: e.target.value });
-            }}
-            className="w-full px-3 py-2 rounded-md border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-gold2 dark:bg-gray-700 dark:text-white"
-          >
-            <option value="relevance">Relevance</option>
-            <option value="price-asc">Price: Low to High</option>
-            <option value="price-desc">Price: High to Low</option>
-            <option value="name-asc">Name: A to Z</option>
-            <option value="name-desc">Name: Z to A</option>
-          </select>
-        </div>
       </div>
+
+      {/* Brands Section */}
+      {brands && brands.length > 0 && (
+        <div className="px-4 py-3">
+          <h4 className="text-sm font-semibold text-gray-800 dark:text-gray-100 mb-2">Brand</h4>
+          <div className="max-h-56 overflow-auto pr-1 space-y-2">
+            {brands.map((b) => {
+              const checked = selectedBrands.includes(b.id);
+              return (
+                <label key={b.id} className="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-200">
+                  <input
+                    type="checkbox"
+                    className="rounded border-gray-300 dark:border-gray-600 text-gold2 focus:ring-gold2"
+                    checked={checked}
+                    onChange={(e) => {
+                      let next;
+                      if (e.target.checked) next = [...selectedBrands, b.id];
+                      else next = selectedBrands.filter(id => id !== b.id);
+                      setSelectedBrands(next);
+                      emitChange({ brands: next });
+                    }}
+                  />
+                  <span>{b.name}</span>
+                </label>
+              );
+            })}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

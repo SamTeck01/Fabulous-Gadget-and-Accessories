@@ -33,21 +33,21 @@ export default function Header() {
             <Link to='/' id='logo' className='w-fit p-0'>
               <img 
                 src={logo}
-                alt="Alpha Tech"
+                alt="Sam Teck"
                 className="h-14 w-fit "
               />
             </Link>
           </div>  
 
           {/* Logo */}
-          <Link to='/' id='logo' className=' hidden lg:flex items-center flex-row outline-none justify-start space-x-4'>
+          <Link to='/' id='logo' className=' hidden lg:flex items-center flex-row outline-none justify-start space-x-3'>
             <img 
               src={logo}
-              alt="Alpha Tech"
+              alt="Sam Teck"
               className="h-14 w-fit"
             />
             <span className='outline-none '>
-              <p className='text-xl font-medium text-gray-800 dark:text-white'>Alpha Tech</p>
+              <p className='text-xl font-medium text-gray-800 dark:text-white'>Sam Teck</p>
             </span>
           </Link>
 
