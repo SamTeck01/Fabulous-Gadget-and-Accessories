@@ -1,7 +1,7 @@
 // pages/LaptopSession.jsx
 import { useParams } from 'react-router-dom';
 import { useEffect, useMemo, useState } from 'react';
-import ProductCard from '../components/deals/ProductCard';
+import DealCard from '../components/deals/DealCard';
 import { getBrandById } from '../data/laptops';
 import LoadingSpinner from '../components/common/LoadingSpinner';
 import SearchBar from '../components/common/SearchBar';
@@ -32,12 +32,9 @@ export default function LaptopSession() {
     fetchBrandData();
   }, [brand]);
 
-  if (loading) return <LoadingSpinner />;
-  if (error) return <div className="text-center py-10 text-red-500">{error}</div>;
-  if (!brandData) return <div className="text-center py-10">Brand not found</div>;
-
+  
   const products = brandData.products;
-
+  
   const filteredProducts = useMemo(() => {
     const term = searchTerm.trim().toLowerCase();
     const parsePrice = (value) => {
@@ -45,7 +42,11 @@ export default function LaptopSession() {
       const n = Number(String(value).replace(/[,\s]/g, ''));
       return Number.isNaN(n) ? null : n;
     };
-
+    
+    if (loading) return <LoadingSpinner />;
+    if (error) return <div className="text-center py-10 text-red-500">{error}</div>;
+    if (!brandData) return <div className="text-center py-10">Brand not found</div>;
+    
     const minP = parsePrice(filters.minPrice);
     const maxP = parsePrice(filters.maxPrice);
 
@@ -100,9 +101,9 @@ export default function LaptopSession() {
         />
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 mb-8">
         {filteredProducts.map(product => (
-          <ProductCard 
+          <DealCard
             key={product.id} 
             product={{...product, brand: brand}} 
             type="laptop"

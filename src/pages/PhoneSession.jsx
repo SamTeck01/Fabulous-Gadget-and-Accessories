@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useMemo, useState } from 'react';
-import ProductCard from '../components/deals/ProductCard';
+import DealCard from '../components/deals/DealCard';
 import { getBrandById } from '../data/phones';
 import LoadingSpinner from '../components/common/LoadingSpinner';
 import SearchBar from '../components/common/SearchBar';
@@ -99,9 +99,9 @@ export default function PhoneSession() {
         />
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 mb-8">
         {filteredProducts.map(product => (
-          <ProductCard 
+          <DealCard 
             key={product.id} 
             product={{...product, brand: brand}} 
             type="phone"

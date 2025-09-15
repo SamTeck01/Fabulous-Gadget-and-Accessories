@@ -161,7 +161,7 @@ export default function PhoneDeals() {
 
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 mb-8">
         {currentProducts.map(product => (
-              <DealCard key={product.id} product={product} type="phone" />
+            <DealCard key={product.id} product={product} type="phone" />
         ))}
       </div>
 
