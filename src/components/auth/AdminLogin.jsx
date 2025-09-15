@@ -110,7 +110,7 @@ export default function AdminLogin() {
 
           <button
             type="submit"
-            className="w-full bg-light-orange hover:bg-dark-orange text-white font-medium py-2 px-4 rounded-md transition duration-300"
+            className="w-full bg-gold2 hover:bg-dark-orange text-white font-medium py-2 px-4 rounded-md transition duration-300"
           >
             Sign In
           </button>

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { getAllLaptopProducts } from '../data/laptops';
+import { getAllLaptopProducts, getLaptopBrands } from '../data/laptops';
 import DealCard from '../components/deals/DealCard';
 import SearchBar from '../components/common/SearchBar';
 
@@ -10,6 +10,7 @@ export default function LaptopDeals() {
   const productsPerPage = 12;
   
   const allProducts = getAllLaptopProducts();
+  const brands = getLaptopBrands();
   
   // Filter products based on search term
   const filteredProducts = allProducts.filter(product =>
@@ -34,6 +35,22 @@ export default function LaptopDeals() {
         Laptop Deals
       </h1>
 
+      {/* Brands */}
+      <div className="mb-10">
+        <h2 className="text-xl font-semibold text-gray-800 dark:text-white mb-4">Brands</h2>
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+          {brands.map(brand => (
+            <Link
+              key={brand.id}
+              to={`/laptop-deals/${brand.id}`}
+              className="bg-white dark:bg-gray-800 rounded-lg shadow p-3 flex items-center justify-center hover:shadow-md transition"
+            >
+              <img src={brand.logo} alt={brand.name} className="h-10 object-contain" />
+            </Link>
+          ))}
+        </div>
+      </div>
+
       <SearchBar 
         placeholder="Search laptop products..."
         value={searchTerm}
@@ -52,7 +69,7 @@ export default function LaptopDeals() {
       </div>
 
       {/* Products Grid */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 mb-8">
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6 mb-8">
         {currentProducts.map(product => (
           <DealCard 
             key={product.id} 
@@ -79,7 +96,7 @@ export default function LaptopDeals() {
               onClick={() => handlePageChange(page)}
               className={`px-3 py-2 border rounded-md ${
                 currentPage === page
-                  ? 'bg-light-orange text-white border-light-orange'
+                  ? 'bg-gold2 text-white border-gold2'
                   : 'border-gray-300 hover:bg-gray-50 dark:border-gray-600 dark:hover:bg-gray-700'
               }`}
             >

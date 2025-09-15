@@ -56,7 +56,7 @@ export default function ProductInfo({ product, onClose }) {
                 <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-2">
                   {product.name}
                 </h2>
-                <p className="text-lg text-light-orange font-bold mb-4">
+                <p className="text-lg text-gold2 font-bold mb-4">
                   ₦{product.price}
                 </p>
 
@@ -85,7 +85,7 @@ export default function ProductInfo({ product, onClose }) {
                     product={product} 
                     className="flex-1 bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded-md flex items-center justify-center"
                   />
-                  <button className="flex-1 bg-light-orange hover:bg-dark-orange text-white py-2 px-4 rounded-md">
+                  <button className="flex-1 bg-gold2 hover:bg-dark-orange text-white py-2 px-4 rounded-md">
                     Add to Cart
                   </button>
                 </div>

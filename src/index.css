@@ -71,7 +71,6 @@ html{
   box-shadow: 0 0 0 2px rgba(255, 165, 0, 0.4);
 }
 
-
 @layer utilities {
 
   .active_link {

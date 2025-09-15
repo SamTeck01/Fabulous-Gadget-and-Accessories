@@ -25,7 +25,8 @@ export default {
         },
         ash: '#575757',
         gold: '#fdfbf4',
-        gold2: '#E49900',
+        gold3: '#E49900',
+        gold2: '#e68a00',
         green: {
           50: '#30AF5B',
           90: '#292C27',

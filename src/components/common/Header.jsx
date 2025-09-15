@@ -25,7 +25,7 @@ export default function Header() {
           <div className='lg:hidden flex flex-row'>
             <button
               onClick={() => setIsSidebarOpen(true)}
-              className="p-2 text-gray-700 dark:text-gray-200 hover:text-light-orange transition-colors"
+              className="p-2 text-gray-700 dark:text-gray-200 hover:text-gold2 transition-colors"
             >
               <Menu className="w-6 h-6" />
             </button>
@@ -56,7 +56,7 @@ export default function Header() {
             <NavLink 
               to="/" 
               className={({ isActive }) => 
-                `font-medium text-gray-700 dark:text-gray-200 hover:text-light-orange transition-colors ${
+                `font-medium text-gray-700 dark:text-gray-200 hover:text-gold2 transition-colors ${
                   isActive ? 'active_link' : ''
                 }`
               }
@@ -66,8 +66,8 @@ export default function Header() {
             <NavLink 
               to="/phone-deals" 
               className={({ isActive }) => 
-                `font-medium text-gray-700 dark:text-gray-200 hover:text-light-orange transition-colors ${
-                  isActive ? 'text-light-orange' : ''
+                `font-medium text-gray-700 dark:text-gray-200 hover:text-gold2 transition-colors ${
+                  isActive ? 'text-gold2' : ''
                 }`
               }
             >
@@ -76,8 +76,8 @@ export default function Header() {
             <NavLink 
               to="/laptop-deals" 
               className={({ isActive }) => 
-                `font-medium text-gray-700 dark:text-gray-200 hover:text-light-orange transition-colors ${
-                  isActive ? 'text-light-orange' : ''
+                `font-medium text-gray-700 dark:text-gray-200 hover:text-gold2 transition-colors ${
+                  isActive ? 'text-gold2' : ''
                 }`
               }
             >
@@ -89,29 +89,29 @@ export default function Header() {
           <div className="flex items-center justify-end space-x-2">
             <button 
               onClick={() => setIsSearchOpen(true)}
-              className="p-2 text-gray-700 dark:text-gray-200 hover:text-light-orange transition-colors"
+              className="p-2 text-gray-700 dark:text-gray-200 hover:text-gold2 transition-colors"
             >
               <Search className="w-5 h-5" />
             </button>
             
             <button
               onClick={toggleDarkMode}
-              className="p-2 text-gray-700 dark:text-gray-200 hover:text-light-orange transition-colors"
+              className="p-2 text-gray-700 dark:text-gray-200 hover:text-gold2 transition-colors"
             >
               {isDarkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
             </button>
             
-            <button className="p-2 text-gray-700 dark:text-gray-200 hover:text-light-orange transition-colors">
+            <button className="p-2 text-gray-700 dark:text-gray-200 hover:text-gold2 transition-colors">
               <User className="w-5 h-5" />
             </button>
             
             <button 
               onClick={() => setIsCartOpen(true)}
-              className="p-2 text-gray-700 dark:text-gray-200 hover:text-light-orange transition-colors relative"
+              className="p-2 text-gray-700 dark:text-gray-200 hover:text-gold2 transition-colors relative"
             >
               <ShoppingCart className="w-5 h-5" />
               {cartCount > 0 && (
-                <span className="absolute -top-[3px] -right-[3px] bg-light-orange text-white text-xs font-semibold rounded-full h-4 w-4 flex items-center justify-center">
+                <span className="absolute -top-[3px] -right-[3px] bg-gold2 text-white text-xs font-semibold rounded-full h-4 w-4 flex items-center justify-center">
                   {cartCount}
                 </span>
               )}

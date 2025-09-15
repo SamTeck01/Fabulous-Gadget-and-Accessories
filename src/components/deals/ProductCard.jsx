@@ -18,7 +18,7 @@ export default function ProductCard({ product, type = 'phone' }) {
         <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-1 line-clamp-2">
           {product.name}
         </h3>
-        <p className="text-light-orange font-bold">
+        <p className="text-gold2 font-bold">
           ₦{product.price}
         </p>
       </div>

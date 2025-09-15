@@ -56,7 +56,7 @@ export default function GlobalSearch({ isOpen, onClose }) {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-start justify-center pt-20 p-4">
+    <div className="fixed inset-0 bg-black/50 z-50 flex items-start justify-center pt-20 p-4">
       <div className="bg-white dark:bg-gray-800 rounded-lg max-w-2xl w-full max-h-[70vh] overflow-hidden shadow-xl">
         <div className="flex items-center p-4 border-b border-gray-200 dark:border-gray-700">
           <Search className="w-5 h-5 text-gray-400 mr-3" />
@@ -89,7 +89,7 @@ export default function GlobalSearch({ isOpen, onClose }) {
               <p className="mb-4">No products found for "{searchTerm}"</p>
               <button
                 onClick={handleSearchSubmit}
-                className="px-4 py-2 bg-light-orange text-white rounded-lg hover:bg-dark-orange transition-colors"
+                className="px-4 py-2 bg-gold2 text-white rounded-lg hover:bg-gold2/80 transition-colors"
               >
                 View All Results
               </button>

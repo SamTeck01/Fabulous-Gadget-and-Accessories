@@ -18,11 +18,11 @@ export default function MobileSidebar({ isOpen, onClose }) {
 
   return (
     <div className="fixed inset-0 z-50 lg:hidden">
-      <div className="fixed inset-0 bg-black bg-opacity-50" onClick={onClose} />
+      <div className="fixed inset-0 bg-black/50" onClick={onClose} />
       
       <div className="fixed top-0 left-0 w-64 h-full bg-white dark:bg-gray-800 shadow-xl">
         <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
-          <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Menu</h2>
+          <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Alpha Tech</h2>
           <button
             onClick={onClose}
             className="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300"
@@ -41,7 +41,7 @@ export default function MobileSidebar({ isOpen, onClose }) {
                 className={({ isActive }) =>
                   `flex items-center px-3 py-2 rounded-lg transition-colors ${
                     isActive
-                      ? 'bg-light-orange text-white'
+                      ? 'bg-gold2 text-white'
                       : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
                   }`
                 }
@@ -63,7 +63,7 @@ export default function MobileSidebar({ isOpen, onClose }) {
                 <ShoppingCart className="w-5 h-5 mr-3" />
                 Cart
                 {cartCount > 0 && (
-                  <span className="ml-auto bg-light-orange text-white text-xs font-semibold rounded-full h-5 w-5 flex items-center justify-center">
+                  <span className="ml-auto bg-gold2 text-white text-xs font-semibold rounded-full h-5 w-5 flex items-center justify-center">
                     {cartCount}
                   </span>
                 )}

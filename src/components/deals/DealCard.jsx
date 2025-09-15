@@ -16,7 +16,7 @@ export default function DealCard({ product, type = 'phone' }) {
           <h3 className="text-base sm:text-lg font-semibold text-gray-800 dark:text-white mb-1 line-clamp-2 truncate" >
             {product.name}
           </h3>
-          <p className="text-light-orange font-bold text-sm sm:text-base">
+          <p className="text-gold2 font-bold text-sm sm:text-base">
             ₦{product.price}
           </p>
           <div className="mt-1 sm:mt-2 flex items-center text-xs sm:text-sm text-gray-600 dark:text-gray-300">

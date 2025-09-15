@@ -31,7 +31,7 @@ const ProductDetail = () => {
         <h2 className="text-2xl font-bold mb-4 text-gray-800">Product not found</h2>
         <button
           onClick={() => navigate(-1)}
-          className="px-4 py-2 bg-light-orange text-white rounded hover:bg-dark-orange transition"
+          className="px-4 py-2 bg-gold2 text-white rounded hover:bg-dark-orange transition"
         >
           Go Back
         </button>
@@ -52,7 +52,7 @@ const ProductDetail = () => {
     <div className="container mx-auto p-4">
       <button
         onClick={() => navigate(-1)}
-        className="mb-6 px-4 py-2 bg-light-orange text-white rounded hover:bg-dark-orange transition"
+        className="mb-6 px-4 py-2 bg-gold2 text-white rounded hover:bg-dark-orange transition"
       >
         Back to {type === 'phone' ? 'Phones' : 'Laptops'}
       </button>
@@ -65,7 +65,7 @@ const ProductDetail = () => {
         />
         <div className="md:w-1/2">
           <h1 className="text-3xl font-bold mb-4 text-gray-800">{product.name}</h1>
-          <p className="text-2xl text-light-orange font-semibold mb-6">₦{product.price}</p>
+          <p className="text-2xl text-gold2 font-semibold mb-6">₦{product.price}</p>
           
           {product.specs && (
             <div className="mb-6">
@@ -88,7 +88,7 @@ const ProductDetail = () => {
           
           <button 
             onClick={handleAddToCart}
-            className="px-6 py-3 bg-light-orange text-white rounded-lg hover:bg-dark-orange transition font-semibold"
+            className="px-6 py-3 bg-gold2 text-white rounded-lg hover:bg-dark-orange transition font-semibold"
           >
             Add to Cart
           </button>

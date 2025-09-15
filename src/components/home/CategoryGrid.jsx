@@ -22,7 +22,7 @@ export default function CategoryGrid() {
           to={category.to}
           className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 flex flex-col items-center hover:shadow-lg transition-shadow"
         >
-          <div className="text-light-orange mb-2">{category.icon}</div>
+          <div className="text-gold2 mb-2">{category.icon}</div>
           <h3 className="text-center font-medium text-gray-800 dark:text-white">
             {category.name}
           </h3>
