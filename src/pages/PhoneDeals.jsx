@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import DealCard from '../components/deals/DealCard';
 import { getFeaturedProducts, getBrands } from '../data/phones';
+import ProductFilters from '../components/common/ProductFilters';
 
 export default function PhoneDeals() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -11,11 +12,44 @@ export default function PhoneDeals() {
   const allProducts = getFeaturedProducts();
   const brands = getBrands();
   
-  // Filter products based on search term
-  const filteredProducts = allProducts.filter(product =>
-    product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    product.detailedName.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const [filters, setFilters] = useState({ minPrice: '', maxPrice: '', sortBy: 'relevance' });
+
+  // Apply search + filters + sort
+  const filteredProducts = useMemo(() => {
+    const term = searchTerm.trim().toLowerCase();
+    const parsePrice = (value) => {
+      if (value === '' || value == null) return null;
+      const n = Number(String(value).replace(/[,\s]/g, ''));
+      return Number.isNaN(n) ? null : n;
+    };
+
+    const minP = parsePrice(filters.minPrice);
+    const maxP = parsePrice(filters.maxPrice);
+
+    let list = allProducts.filter(p => {
+      const nameMatch = term === '' || p.name.toLowerCase().includes(term) || p.detailedName.toLowerCase().includes(term);
+      const priceNumber = parsePrice(p.price);
+      const minOk = minP == null || (priceNumber != null && priceNumber >= minP);
+      const maxOk = maxP == null || (priceNumber != null && priceNumber <= maxP);
+      return nameMatch && minOk && maxOk;
+    });
+
+    const sortKey = filters.sortBy;
+    if (sortKey === 'price-asc' || sortKey === 'price-desc') {
+      list = list.slice().sort((a, b) => {
+        const pa = parsePrice(a.price) ?? Number.MAX_SAFE_INTEGER;
+        const pb = parsePrice(b.price) ?? Number.MAX_SAFE_INTEGER;
+        return sortKey === 'price-asc' ? pa - pb : pb - pa;
+      });
+    } else if (sortKey === 'name-asc' || sortKey === 'name-desc') {
+      list = list.slice().sort((a, b) => {
+        const cmp = a.name.localeCompare(b.name);
+        return sortKey === 'name-asc' ? cmp : -cmp;
+      });
+    }
+
+    return list;
+  }, [allProducts, searchTerm, filters.minPrice, filters.maxPrice, filters.sortBy]);
   
   // Calculate pagination
   const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
@@ -50,8 +84,7 @@ export default function PhoneDeals() {
         </div>
       </div>
 
-      {/* Search Bar */}
-      <div className="mb-8">
+      <div className="space-y-4 mb-8">
         <input
           type="text"
           placeholder="Search phone products..."
@@ -59,7 +92,15 @@ export default function PhoneDeals() {
           value={searchTerm}
           onChange={(e) => {
             setSearchTerm(e.target.value);
-            setCurrentPage(1); // Reset to first page when searching
+            setCurrentPage(1);
+          }}
+        />
+        <ProductFilters
+          products={allProducts}
+          value={filters}
+          onChange={(next) => {
+            setFilters(next);
+            setCurrentPage(1);
           }}
         />
       </div>
