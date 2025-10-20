@@ -1,4 +1,6 @@
 import apiService from './api';
+import { getFeaturedProducts } from '../data/phones';
+import { getAllLaptopProducts } from '../data/laptops';
 
 class ProductService {
   async getAllProducts(params = {}) {
@@ -39,10 +41,6 @@ class ProductService {
 
   // Fallback methods using local data
   getLocalProducts(params = {}) {
-    // Import local data functions
-    const { getFeaturedProducts } = require('../data/phones');
-    const { getAllLaptopProducts } = require('../data/laptops');
-    
     const phoneProducts = getFeaturedProducts().map(p => ({ ...p, type: 'phone', category: 'phone' }));
     const laptopProducts = getAllLaptopProducts().map(p => ({ ...p, type: 'laptop', category: 'laptop' }));
     
@@ -81,9 +79,6 @@ class ProductService {
   }
 
   getLocalProductById(id) {
-    const { getFeaturedProducts } = require('../data/phones');
-    const { getAllLaptopProducts } = require('../data/laptops');
-    
     const phoneProducts = getFeaturedProducts();
     const laptopProducts = getAllLaptopProducts();
     
@@ -92,9 +87,6 @@ class ProductService {
   }
 
   searchLocalProducts(query, filters = {}) {
-    const { getFeaturedProducts } = require('../data/phones');
-    const { getAllLaptopProducts } = require('../data/laptops');
-    
     const phoneProducts = getFeaturedProducts().map(p => ({ ...p, type: 'phone', category: 'phone' }));
     const laptopProducts = getAllLaptopProducts().map(p => ({ ...p, type: 'laptop', category: 'laptop' }));
     

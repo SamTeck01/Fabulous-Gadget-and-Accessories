@@ -1,245 +1,310 @@
-# Fabulous Gadgets Backend API
+# Fabulous Gadgets Backend
 
-A comprehensive backend API for the Fabulous Gadgets e-commerce application built with Express.js and MongoDB.
+A comprehensive backend API for the Fabulous Gadgets e-commerce application built with Node.js, Express.js, and MongoDB.
 
-## Features
+## 🚀 Features
 
-- **User Authentication**: JWT-based authentication with registration and login
-- **Product Management**: CRUD operations for products with search and filtering
-- **Order Management**: Complete order processing system
-- **Admin Panel**: Admin-specific routes for managing products and orders
-- **Database Integration**: MongoDB with Mongoose ODM
-- **Security**: Password hashing, JWT tokens, and role-based access control
+- **User Authentication & Authorization**
+  - JWT-based authentication
+  - Role-based access control (User/Admin)
+  - Password hashing with bcryptjs
+  - User registration and login
 
-## Tech Stack
+- **Product Management**
+  - CRUD operations for products
+  - Product categories and brands
+  - Image upload support
+  - Search and filtering
+  - Featured products
+  - Stock management
 
-- **Node.js** - Runtime environment
-- **Express.js** - Web framework
-- **MongoDB** - Database
-- **Mongoose** - ODM for MongoDB
-- **JWT** - Authentication tokens
-- **bcryptjs** - Password hashing
-- **CORS** - Cross-origin resource sharing
+- **Order Management**
+  - Order creation and tracking
+  - Order status updates
+  - Payment status tracking
+  - Order history
 
-## Installation
+- **Admin Dashboard**
+  - Product management
+  - Order management
+  - User management
+  - Analytics and statistics
 
-1. **Clone the repository**
-   ```bash
-   git clone <repository-url>
-   cd fabulous-gadgets-backend
-   ```
+- **Security Features**
+  - Rate limiting
+  - Input validation
+  - CORS protection
+  - Helmet security headers
+  - Error handling
 
-2. **Install dependencies**
-   ```bash
-   npm install
-   ```
+## 🛠️ Tech Stack
 
-3. **Set up environment variables**
-   ```bash
-   cp env.example .env
-   ```
-   
-   Update the `.env` file with your configuration:
-   ```env
-   MONGODB_URI=mongodb://localhost:27017/fabulous-gadgets
-   JWT_SECRET=your-super-secret-jwt-key
-   PORT=5000
-   NODE_ENV=development
-   ```
+- **Runtime**: Node.js
+- **Framework**: Express.js
+- **Database**: MongoDB with Mongoose
+- **Authentication**: JWT + bcryptjs
+- **Security**: Helmet, CORS, Rate Limiting
+- **File Upload**: Multer
+- **Validation**: express-validator
+- **Logging**: Morgan
 
-4. **Start MongoDB**
-   Make sure MongoDB is running on your system.
+## 📋 Prerequisites
 
-5. **Run the application**
-   ```bash
-   # Development mode
-   npm run dev
-   
-   # Production mode
-   npm start
-   ```
+- Node.js (v14 or higher)
+- MongoDB (local or cloud instance)
+- npm or yarn
 
-## API Endpoints
+## 🚀 Getting Started
 
-### Authentication
-- `POST /api/auth/register` - Register a new user
-- `POST /api/auth/login` - Login user
+### 1. Install Dependencies
 
-### Products
-- `GET /api/products` - Get all products (with filtering and pagination)
-- `GET /api/products/:id` - Get product by ID
+```bash
+npm install
+```
 
-### Admin Products
-- `POST /api/admin/products` - Create new product (Admin only)
-- `PUT /api/admin/products/:id` - Update product (Admin only)
-- `DELETE /api/admin/products/:id` - Delete product (Admin only)
+### 2. Environment Setup
 
-### Orders
-- `POST /api/orders` - Create new order
-- `GET /api/orders` - Get user's orders
+Copy the environment example file and configure your variables:
 
-### Admin Orders
-- `GET /api/admin/orders` - Get all orders (Admin only)
-- `PUT /api/admin/orders/:id` - Update order status (Admin only)
+```bash
+cp env.example .env
+```
 
-### Admin Stats
-- `GET /api/admin/stats` - Get dashboard statistics (Admin only)
+Update the `.env` file with your configuration:
 
-### Health Check
-- `GET /api/health` - API health check
+```env
+# Database
+MONGODB_URI=mongodb://localhost:27017/fabulous-gadgets
 
-## API Usage Examples
+# JWT Secret
+JWT_SECRET=your-super-secret-jwt-key-change-this-in-production
+
+# Server Port
+PORT=5000
+
+# Environment
+NODE_ENV=development
+
+# CORS Origins (comma-separated)
+CORS_ORIGINS=http://localhost:3000,http://localhost:5173
+
+# Rate Limiting
+RATE_LIMIT_WINDOW_MS=900000
+RATE_LIMIT_MAX_REQUESTS=100
+
+# File Upload
+MAX_FILE_SIZE=5242880
+UPLOAD_PATH=uploads
+
+# Admin Credentials (for initial setup)
+ADMIN_USERNAME=admin
+ADMIN_EMAIL=admin@fabulousgadgets.com
+ADMIN_PASSWORD=admin123
+```
+
+### 3. Start MongoDB
+
+Make sure MongoDB is running on your system:
+
+```bash
+# For local MongoDB
+mongod
+
+# Or if using MongoDB as a service
+sudo systemctl start mongod
+```
+
+### 4. Seed the Database (Optional)
+
+Populate the database with sample data:
+
+```bash
+node seed.js
+```
+
+This will create:
+- Admin user (admin/admin123)
+- Sample users
+- Sample products (phones, laptops, accessories)
+
+### 5. Start the Server
+
+```bash
+# Development mode with auto-restart
+npm run dev
+
+# Production mode
+npm start
+```
+
+The server will start on `http://localhost:5000`
+
+## 📚 API Documentation
+
+### Authentication Endpoints
+
+| Method | Endpoint | Description | Auth Required |
+|--------|----------|-------------|---------------|
+| POST | `/api/auth/register` | Register new user | No |
+| POST | `/api/auth/login` | User login | No |
+
+### Product Endpoints
+
+| Method | Endpoint | Description | Auth Required |
+|--------|----------|-------------|---------------|
+| GET | `/api/products` | Get all products | No |
+| GET | `/api/products/:id` | Get product by ID | No |
+| GET | `/api/products/featured` | Get featured products | No |
+| GET | `/api/categories` | Get product categories | No |
+| GET | `/api/brands` | Get product brands | No |
+| POST | `/api/admin/products` | Create product | Admin |
+| PUT | `/api/admin/products/:id` | Update product | Admin |
+| DELETE | `/api/admin/products/:id` | Delete product | Admin |
+
+### Order Endpoints
+
+| Method | Endpoint | Description | Auth Required |
+|--------|----------|-------------|---------------|
+| POST | `/api/orders` | Create order | User |
+| GET | `/api/orders` | Get user orders | User |
+| GET | `/api/orders/:id` | Get order by ID | User |
+| GET | `/api/admin/orders` | Get all orders | Admin |
+| PUT | `/api/admin/orders/:id` | Update order | Admin |
+
+### Admin Endpoints
+
+| Method | Endpoint | Description | Auth Required |
+|--------|----------|-------------|---------------|
+| GET | `/api/admin/stats` | Get dashboard statistics | Admin |
+
+### Utility Endpoints
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/health` | Health check |
+
+## 🔧 Configuration
+
+### Environment Variables
+
+| Variable | Description | Default |
+|----------|-------------|---------|
+| `MONGODB_URI` | MongoDB connection string | `mongodb://localhost:27017/fabulous-gadgets` |
+| `JWT_SECRET` | JWT signing secret | `your-secret-key` |
+| `PORT` | Server port | `5000` |
+| `NODE_ENV` | Environment | `development` |
+| `CORS_ORIGINS` | Allowed CORS origins | `http://localhost:3000,http://localhost:5173` |
+| `RATE_LIMIT_WINDOW_MS` | Rate limit window | `900000` (15 minutes) |
+| `RATE_LIMIT_MAX_REQUESTS` | Max requests per window | `100` |
+| `MAX_FILE_SIZE` | Max file upload size | `5242880` (5MB) |
+| `UPLOAD_PATH` | File upload directory | `uploads` |
+
+## 📁 Project Structure
+
+```
+backend/
+├── server.js          # Main server file
+├── seed.js            # Database seeding script
+├── package.json       # Dependencies and scripts
+├── .env              # Environment variables
+├── env.example       # Environment variables template
+├── uploads/          # File upload directory
+└── README.md         # This file
+```
+
+## 🔒 Security Features
+
+- **Rate Limiting**: Prevents API abuse
+- **Input Validation**: Validates all incoming data
+- **CORS Protection**: Configurable cross-origin requests
+- **Helmet**: Security headers
+- **Password Hashing**: bcryptjs for secure password storage
+- **JWT Authentication**: Secure token-based authentication
+- **File Upload Security**: File type and size validation
+
+## 🚀 Deployment
+
+### Using PM2 (Recommended)
+
+```bash
+# Install PM2 globally
+npm install -g pm2
+
+# Start the application
+pm2 start server.js --name "fabulous-gadgets-api"
+
+# Save PM2 configuration
+pm2 save
+
+# Setup PM2 to start on boot
+pm2 startup
+```
+
+### Using Docker
+
+```dockerfile
+FROM node:18-alpine
+WORKDIR /app
+COPY package*.json ./
+RUN npm install --production
+COPY . .
+EXPOSE 5000
+CMD ["npm", "start"]
+```
+
+## 🧪 Testing
+
+```bash
+# Run health check
+curl http://localhost:5000/api/health
+
+# Test authentication
+curl -X POST http://localhost:5000/api/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{"username":"admin","password":"admin123"}'
+```
+
+## 📝 API Examples
 
 ### Register User
-```javascript
-const response = await fetch('http://localhost:5000/api/auth/register', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json',
-  },
-  body: JSON.stringify({
-    username: 'john_doe',
-    email: 'john@example.com',
-    password: 'password123'
-  })
-});
+
+```bash
+curl -X POST http://localhost:5000/api/auth/register \
+  -H "Content-Type: application/json" \
+  -d '{
+    "username": "testuser",
+    "email": "test@example.com",
+    "password": "password123"
+  }'
 ```
 
-### Login User
-```javascript
-const response = await fetch('http://localhost:5000/api/auth/login', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json',
-  },
-  body: JSON.stringify({
-    username: 'john_doe',
-    password: 'password123'
-  })
-});
+### Get Products
+
+```bash
+curl http://localhost:5000/api/products?category=phone&page=1&limit=10
 ```
 
-### Get Products with Filters
-```javascript
-const response = await fetch('http://localhost:5000/api/products?category=phone&search=iphone&page=1&limit=12');
-```
+### Create Order
 
-### Create Order (with authentication)
-```javascript
-const response = await fetch('http://localhost:5000/api/orders', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json',
-    'Authorization': 'Bearer your-jwt-token'
-  },
-  body: JSON.stringify({
-    items: [
-      {
-        productId: 'product-id',
-        quantity: 2,
-        price: '50000'
-      }
-    ],
-    total: '100000',
-    shippingAddress: {
-      name: 'John Doe',
-      address: '123 Main St',
-      city: 'Lagos',
-      state: 'Lagos',
-      zipCode: '100001',
-      phone: '+2341234567890'
+```bash
+curl -X POST http://localhost:5000/api/orders \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer YOUR_JWT_TOKEN" \
+  -d '{
+    "items": [{"productId": "PRODUCT_ID", "quantity": 1, "price": "100000"}],
+    "total": "100000",
+    "shippingAddress": {
+      "name": "John Doe",
+      "address": "123 Main St",
+      "city": "Lagos",
+      "state": "Lagos",
+      "zipCode": "100001",
+      "phone": "+2341234567890"
     }
-  })
-});
+  }'
 ```
 
-## Database Schema
-
-### User Schema
-```javascript
-{
-  username: String (required, unique),
-  email: String (required, unique),
-  password: String (required, hashed),
-  role: String (enum: ['user', 'admin'], default: 'user'),
-  createdAt: Date
-}
-```
-
-### Product Schema
-```javascript
-{
-  name: String (required),
-  detailedName: String (required),
-  price: String (required),
-  image: String (required),
-  category: String (enum: ['phone', 'laptop', 'accessory'], required),
-  brand: String (required),
-  specs: Object,
-  details: String,
-  stock: Number (default: 0),
-  isActive: Boolean (default: true),
-  createdAt: Date
-}
-```
-
-### Order Schema
-```javascript
-{
-  userId: ObjectId (ref: 'User'),
-  items: [{
-    productId: ObjectId (ref: 'Product'),
-    quantity: Number (required),
-    price: String (required)
-  }],
-  total: String (required),
-  status: String (enum: ['pending', 'processing', 'shipped', 'delivered', 'cancelled']),
-  shippingAddress: {
-    name: String,
-    address: String,
-    city: String,
-    state: String,
-    zipCode: String,
-    phone: String
-  },
-  createdAt: Date
-}
-```
-
-## Authentication
-
-The API uses JWT (JSON Web Tokens) for authentication. Include the token in the Authorization header:
-
-```
-Authorization: Bearer your-jwt-token
-```
-
-## Error Handling
-
-The API returns consistent error responses:
-
-```javascript
-{
-  "message": "Error description",
-  "error": "Detailed error information"
-}
-```
-
-## Development
-
-- **nodemon** is used for development to automatically restart the server on file changes
-- **CORS** is enabled for cross-origin requests
-- **dotenv** is used for environment variable management
-
-## Production Deployment
-
-1. Set `NODE_ENV=production`
-2. Use a production MongoDB instance
-3. Set a strong `JWT_SECRET`
-4. Use a process manager like PM2
-5. Set up proper logging and monitoring
-
-## Contributing
+## 🤝 Contributing
 
 1. Fork the repository
 2. Create a feature branch
@@ -247,6 +312,10 @@ The API returns consistent error responses:
 4. Add tests if applicable
 5. Submit a pull request
 
-## License
+## 📄 License
 
-MIT License - see LICENSE file for details
+This project is licensed under the MIT License.
+
+## 🆘 Support
+
+For support, email support@fabulousgadgets.com or create an issue in the repository.
