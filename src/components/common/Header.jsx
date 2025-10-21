@@ -1,7 +1,8 @@
 import { Link, NavLink } from 'react-router-dom';
-import { User, ShoppingCart, Search, Menu, Moon, Sun } from 'lucide-react';
+import { User, ShoppingCart, Search, Menu, Moon, Sun, Heart } from 'lucide-react';
 import logo from '../../assets/img/fabulous-logo.png'
 import { useCart } from '../../context/CartContext';
+import { useWishlist } from '../../context/WishlistContext';
 import { useTheme } from '../../context/ThemeContext';
 import { useState } from 'react';
 import CartModal from './CartModal';
@@ -10,12 +11,14 @@ import MobileSidebar from './MobileSidebar';
 
 export default function Header() {
   const { cartItems } = useCart();
+  const { wishlistItems } = useWishlist();
   const { isDarkMode, toggleDarkMode } = useTheme();
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   
   const cartCount = cartItems.reduce((total, item) => total + item.quantity, 0);
+  const wishlistCount = wishlistItems.length;
 
   return (
     <>
@@ -104,6 +107,18 @@ export default function Header() {
             <button className="p-2 text-gray-700 dark:text-gray-200 hover:text-gold2 transition-colors">
               <User className="w-5 h-5" />
             </button>
+            
+            <Link 
+              to="/wishlist"
+              className="p-2 text-gray-700 dark:text-gray-200 hover:text-gold2 transition-colors relative"
+            >
+              <Heart className="w-5 h-5" />
+              {wishlistCount > 0 && (
+                <span className="absolute -top-[3px] -right-[3px] bg-red-500 text-white text-xs font-semibold rounded-full h-4 w-4 flex items-center justify-center">
+                  {wishlistCount}
+                </span>
+              )}
+            </Link>
             
             <button 
               onClick={() => setIsCartOpen(true)}

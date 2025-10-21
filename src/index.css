@@ -6,6 +6,23 @@
   box-sizing: border-box;
   font-family: 'Urbanist', sans-serif;
 }
+
+/* Toast Animation */
+@keyframes slide-in {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.animate-slide-in {
+  animation: slide-in 0.3s ease-out;
+}
+
 .linearGradient {
   background: linear-gradient(180deg, #fde1ff 0%, #e1ffea22 60%);
 }

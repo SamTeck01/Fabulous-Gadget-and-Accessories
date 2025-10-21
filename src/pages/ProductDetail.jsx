@@ -1,13 +1,21 @@
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { ArrowLeft, ShoppingCart, Truck, Shield, RefreshCw } from 'lucide-react';
+import { Helmet } from 'react-helmet';
 import { getProductById } from '../data/phones';
 import { getProductById as getLaptopProductById } from '../data/laptops';
 import { useCart } from '../context/CartContext';
+import { useToast } from '../context/ToastContext';
+import RatingDisplay from '../components/common/RatingDisplay';
+import WishlistButton from '../components/common/WishlistButton';
+import StockBadge from '../components/common/StockBadge';
+import FeaturedBadge from '../components/common/FeaturedBadge';
 
 const ProductDetail = () => {
   const { brand, productId } = useParams();
   const navigate = useNavigate();
   const { addToCart } = useCart();
+  const toast = useToast();
 
   // Try to find product in phones first, then laptops
   let product = null;
@@ -27,14 +35,19 @@ const ProductDetail = () => {
 
   if (!product) {
     return (
-      <div className="container mx-auto p-4 text-center">
-        <h2 className="text-2xl font-bold mb-4 text-gray-800">Product not found</h2>
-        <button
-          onClick={() => navigate(-1)}
-          className="px-4 py-2 bg-gold2 text-white rounded hover:bg-dark-orange transition"
-        >
-          Go Back
-        </button>
+      <div className="min-h-screen bg-gray-50 dark:bg-dark-primary flex items-center justify-center p-4">
+        <Helmet><title>Product Not Found - Fabulous Gadgets</title></Helmet>
+        <div className="text-center">
+          <h2 className="text-3xl font-bold mb-4 dark:text-white">Product not found</h2>
+          <p className="text-gray-600 dark:text-gray-400 mb-6">The product you're looking for doesn't exist.</p>
+          <button
+            onClick={() => navigate(-1)}
+            className="px-6 py-3 bg-gold2 text-white rounded-lg hover:bg-gold2/90 transition flex items-center gap-2 mx-auto"
+          >
+            <ArrowLeft className="w-5 h-5" />
+            Go Back
+          </button>
+        </div>
       </div>
     );
   }
@@ -45,53 +58,115 @@ const ProductDetail = () => {
       type: type,
       brand: brand
     });
-    alert('Product added to cart!');
+    toast.success(`${product.name} added to cart!`);
   };
 
   return (
-    <div className="container mx-auto p-4">
-      <button
-        onClick={() => navigate(-1)}
-        className="mb-6 px-4 py-2 bg-gold2 text-white rounded hover:bg-dark-orange transition"
-      >
-        Back to {type === 'phone' ? 'Phones' : 'Laptops'}
-      </button>
-      <div className="flex flex-col md:flex-row gap-8 bg-white p-6 rounded-lg shadow-lg">
-        <img
-          src={product.image}
-          alt={product.name}
-          className="w-full md:w-1/2 h-auto object-contain rounded-lg"
-          loading="lazy"
-        />
-        <div className="md:w-1/2">
-          <h1 className="text-3xl font-bold mb-4 text-gray-800">{product.name}</h1>
-          <p className="text-2xl text-gold2 font-semibold mb-6">₦{product.price}</p>
-          
-          {product.specs && (
+    <div className="min-h-screen bg-gray-50 dark:bg-dark-primary py-8">
+      <Helmet>
+        <title>{product.name} - Fabulous Gadgets</title>
+        <meta name="description" content={product.description || `Buy ${product.name} at the best price`} />
+      </Helmet>
+
+      <div className="container mx-auto px-4 max-w-7xl">
+        <button
+          onClick={() => navigate(-1)}
+          className="mb-6 px-4 py-2 bg-white dark:bg-dark-secondary text-gray-700 dark:text-white rounded-lg hover:shadow-md transition flex items-center gap-2"
+        >
+          <ArrowLeft className="w-5 h-5" />
+          Back to {type === 'phone' ? 'Phones' : 'Laptops'}
+        </button>
+
+        <div className="grid md:grid-cols-2 gap-8 bg-white dark:bg-dark-secondary p-6 md:p-8 rounded-lg shadow-lg">
+          {/* Product Image */}
+          <div className="relative">
+            {product.featured && <FeaturedBadge />}
+            <div className="aspect-square bg-gray-100 dark:bg-dark-primary rounded-lg overflow-hidden">
+              <img
+                src={product.image}
+                alt={product.name}
+                className="w-full h-full object-contain p-4"
+                loading="lazy"
+              />
+            </div>
+          </div>
+
+          {/* Product Info */}
+          <div>
+            <h1 className="text-3xl md:text-4xl font-bold mb-4 dark:text-white">
+              {product.name}
+            </h1>
+
+            {/* Rating */}
+            {product.rating && (
+              <div className="mb-4">
+                <RatingDisplay rating={product.rating} reviews={product.reviews} size="lg" />
+              </div>
+            )}
+
+            {/* Price */}
             <div className="mb-6">
-              <h3 className="text-xl font-semibold mb-2 text-gray-800">Specifications</h3>
-              <div className="space-y-2">
-                {Object.entries(product.specs).map(([key, value]) => (
-                  <div key={key} className="flex">
-                    <span className="font-medium text-gray-600 w-24 capitalize">{key}:</span>
-                    <span className="text-gray-800">{value}</span>
-                  </div>
-                ))}
+              <p className="text-4xl text-gold2 font-bold">₦{product.price}</p>
+            </div>
+
+            {/* Stock Status */}
+            <div className="mb-6">
+              <StockBadge inStock={product.inStock !== false} size="md" />
+            </div>
+
+            {/* Description */}
+            {product.description && (
+              <div className="mb-6 p-4 bg-gray-50 dark:bg-dark-primary rounded-lg">
+                <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                  {product.description}
+                </p>
+              </div>
+            )}
+
+            {/* Action Buttons */}
+            <div className="flex gap-4 mb-8">
+              <button
+                onClick={handleAddToCart}
+                disabled={product.inStock === false}
+                className="flex-1 bg-gold2 text-white px-8 py-4 rounded-lg hover:bg-gold2/90 transition font-semibold text-lg flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                <ShoppingCart className="w-6 h-6" />
+                Add to Cart
+              </button>
+              <WishlistButton product={product} size="lg" showText={false} className="p-4 border-2 border-gray-300 dark:border-gray-600 rounded-lg hover:border-red-500" />
+            </div>
+
+            {/* Features */}
+            <div className="grid grid-cols-3 gap-4 mb-8 p-4 bg-gray-50 dark:bg-dark-primary rounded-lg">
+              <div className="text-center">
+                <Truck className="w-8 h-8 mx-auto mb-2 text-gold2" />
+                <p className="text-xs font-medium dark:text-gray-300">Free Delivery</p>
+              </div>
+              <div className="text-center">
+                <Shield className="w-8 h-8 mx-auto mb-2 text-gold2" />
+                <p className="text-xs font-medium dark:text-gray-300">Warranty</p>
+              </div>
+              <div className="text-center">
+                <RefreshCw className="w-8 h-8 mx-auto mb-2 text-gold2" />
+                <p className="text-xs font-medium dark:text-gray-300">Easy Returns</p>
               </div>
             </div>
-          )}
 
-          <div className="mb-6">
-            <h3 className="text-xl font-semibold mb-2 text-gray-800">Details</h3>
-            <p className="text-gray-600">{product.details || product.description || 'No additional details available.'}</p>
+            {/* Specifications */}
+            {product.specs && (
+              <div className="mb-6">
+                <h3 className="text-2xl font-bold mb-4 dark:text-white">Specifications</h3>
+                <div className="space-y-3 bg-gray-50 dark:bg-dark-primary p-4 rounded-lg">
+                  {Object.entries(product.specs).map(([key, value]) => (
+                    <div key={key} className="flex border-b border-gray-200 dark:border-gray-700 pb-2 last:border-0">
+                      <span className="font-semibold text-gray-700 dark:text-gray-300 w-32 capitalize">{key}:</span>
+                      <span className="text-gray-600 dark:text-gray-400 flex-1">{value}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
-          
-          <button 
-            onClick={handleAddToCart}
-            className="px-6 py-3 bg-gold2 text-white rounded-lg hover:bg-dark-orange transition font-semibold"
-          >
-            Add to Cart
-          </button>
         </div>
       </div>
     </div>

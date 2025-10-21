@@ -1,9 +1,11 @@
 import React from 'react';
 import { X, Plus, Minus, Trash2 } from 'lucide-react';
 import { useCart } from '../../context/CartContext';
+import { useNavigate } from 'react-router-dom';
 
 export default function CartModal({ isOpen, onClose }) {
   const { cartItems, cartTotal, updateQuantity, removeFromCart, clearCart } = useCart();
+  const navigate = useNavigate();
 
   if (!isOpen) return null;
 
@@ -85,7 +87,10 @@ export default function CartModal({ isOpen, onClose }) {
                 Clear Cart
               </button>
               <button
-                onClick={() => alert('Checkout functionality coming soon!')}
+                onClick={() => {
+                  onClose();
+                  navigate('/checkout');
+                }}
                 className="flex-1 px-4 py-2 bg-gold2 text-white rounded-lg hover:bg-gold2/80 transition"
               >
                 Checkout
