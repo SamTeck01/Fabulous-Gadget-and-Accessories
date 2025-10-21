@@ -1,68 +1,76 @@
 import { Link } from 'react-router-dom';
-import { ShoppingCart } from 'lucide-react';
-import { useCart } from '../../context/CartContext';
-import { useToast } from '../../context/ToastContext';
-import RatingDisplay from '../common/RatingDisplay';
-import WishlistButton from '../common/WishlistButton';
-import StockBadge from '../common/StockBadge';
-import FeaturedBadge from '../common/FeaturedBadge';
+import { ArrowUpRight, Heart } from 'lucide-react';
+import { useWishlist } from '../../context/WishlistContext';
 
-export default function DealCard({ product, type = 'phone' }) {
-  const { addToCart } = useCart();
-  const toast = useToast();
+export default function DealCard({ product, type }) {
+  const { isInWishlist, toggleWishlist } = useWishlist();
+  const inWishlist = isInWishlist(product.id);
 
-  const handleAddToCart = (e) => {
+  const handleWishlistClick = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    addToCart(product);
-    toast.success(`${product.name} added to cart!`);
+    toggleWishlist(product);
   };
 
+  // Use type prop if provided, otherwise use product.type, default to 'phone'
+  const productType = type || product.type || 'phone';
+
   return (
-    <div className="bg-white dark:bg-gray-800 mb-4 w-full sm:w-44 md:w-56 lg:w-60 shrink-0 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow relative group">
-      {product.featured && <FeaturedBadge />}
-      
-      <Link to={`/${type}-deals/${product.brand || 'unknown'}/${product.id}`} className="block">
-        <div className="aspect-[4/3] overflow-hidden relative">
+    <Link 
+      to={`/${productType}-deals/${product.brand || 'unknown'}/${product.id}`}
+      className="block group"
+    >
+      <div className="relative bg-white dark:bg-gray-800 rounded-3xl p-4 border-4 border-white dark:border-gray-700 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
+        {/* Image Container with rounded background */}
+        <div className="relative bg-gray-100 dark:bg-gray-700 rounded-2xl overflow-hidden mb-4 aspect-square">
           <img
             src={product.image}
             alt={product.name}
-            className="object-contain w-full h-full group-hover:scale-105 transition-transform duration-300"
+            className="object-contain w-full h-full p-6 group-hover:scale-110 transition-transform duration-500"
             loading="lazy"
           />
-          <div className="absolute top-2 right-2">
-            <WishlistButton product={product} size="md" />
+          
+          {/* Wishlist Heart Button - Top Right */}
+          <button
+            onClick={handleWishlistClick}
+            className="absolute top-3 right-3 w-10 h-10 rounded-full bg-gray-800/60 dark:bg-gray-900/60 backdrop-blur-sm flex items-center justify-center hover:bg-gray-800/80 transition-colors"
+            aria-label="Add to wishlist"
+          >
+            <Heart 
+              className={`w-5 h-5 transition-all ${
+                inWishlist 
+                  ? 'fill-red-500 text-red-500' 
+                  : 'text-white'
+              }`}
+            />
+          </button>
+
+          {/* Carousel Dots Indicator */}
+          <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5">
+            <div className="w-2 h-2 rounded-full bg-white"></div>
+            <div className="w-2 h-2 rounded-full bg-white/40"></div>
+            <div className="w-2 h-2 rounded-full bg-white/40"></div>
+            <div className="w-2 h-2 rounded-full bg-white/40"></div>
           </div>
         </div>
-        <div className="px-3 py-2 sm:px-4 sm:py-3">
-          <h3 className="text-base sm:text-lg font-semibold text-gray-800 dark:text-white mb-2 line-clamp-2 min-h-[3rem]">
-            {product.name}
-          </h3>
-          
-          {product.rating && (
-            <div className="mb-2">
-              <RatingDisplay rating={product.rating} reviews={product.reviews} size="sm" />
-            </div>
-          )}
-          
-          <p className="text-gold2 font-bold text-lg sm:text-xl mb-2">
-            ₦{product.price}
-          </p>
-          
-          <div className="mb-3">
-            <StockBadge inStock={product.inStock !== false} size="sm" />
+
+        {/* Product Info */}
+        <div className="flex items-start justify-between gap-3">
+          <div className="flex-1 min-w-0">
+            <h3 className="text-lg font-bold text-gray-800 dark:text-white mb-1 truncate">
+              {product.name}
+            </h3>
+            <p className="text-2xl font-bold text-[#FF9500] dark:text-[#FFB340]">
+              ${product.price}
+            </p>
           </div>
 
-          <button
-            onClick={handleAddToCart}
-            disabled={product.inStock === false}
-            className="w-full bg-gold2 text-white py-2 rounded-lg hover:bg-gold2/90 transition-colors flex items-center justify-center gap-2 font-medium text-sm disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            <ShoppingCart className="w-4 h-4" />
-            Add to Cart
-          </button>
+          {/* Arrow Icon - Bottom Right */}
+          <div className="flex-shrink-0 w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-700 flex items-center justify-center group-hover:bg-gold2 group-hover:text-white transition-colors">
+            <ArrowUpRight className="w-5 h-5 text-gray-600 dark:text-gray-300 group-hover:text-white transition-colors" />
+          </div>
         </div>
-      </Link>
-    </div>
+      </div>
+    </Link>
   );
 }

@@ -15,6 +15,7 @@ import { ThemeProvider } from './context/ThemeContext';
 import { AuthProvider } from './context/AuthContext';
 import { ToastProvider } from './context/ToastContext';
 import { WishlistProvider } from './context/WishlistContext';
+import Cart from './pages/Cart';
 import Checkout from './pages/Checkout';
 import OrderConfirmation from './pages/OrderConfirmation';
 import Wishlist from './pages/Wishlist';
@@ -42,6 +43,7 @@ export default function App() {
                     <Route path=":brand/:productId" element={<ProductDetail />} />
                   </Route>
                   <Route path="search" element={<SearchResults />} />
+                  <Route path="cart" element={<Cart />} />
                   <Route path="checkout" element={<Checkout />} />
                   <Route path="order-confirmation" element={<OrderConfirmation />} />
                   <Route path="wishlist" element={<Wishlist />} />

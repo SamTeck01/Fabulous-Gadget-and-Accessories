@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { getLaptopBrands } from '../data/laptops';
+import { getLaptopBrands, getAllLaptopProducts } from '../data/laptops';
 import DealCard from '../components/deals/DealCard';
 import SearchBar from '../components/common/SearchBar';
 import ProductFilters from '../components/common/ProductFilters';
@@ -12,10 +12,7 @@ export default function LaptopDeals() {
   const [showMobileFilters, setShowMobileFilters] = useState(false);
   
   const brands = getLaptopBrands();
-  // Flatten products with brand id for filtering like Jumia
-  const allProducts = useMemo(() => {
-    return brands.flatMap(b => (b.products || []).map(p => ({ ...p, brand: b.id, type: 'laptop' })));
-  }, [brands]);
+  const allProducts = useMemo(() => getAllLaptopProducts(), []);
   
   const [filters, setFilters] = useState({ minPrice: '', maxPrice: '', sortBy: 'relevance', brands: [] });
 

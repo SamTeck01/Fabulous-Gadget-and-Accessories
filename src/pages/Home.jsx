@@ -1,6 +1,7 @@
 import HeroCarousel from '../components/home/HeroCarousel';
 import DealCard from '../components/deals/DealCard';
 import { getFeaturedProducts, getNewArrivals, getTopBrandProducts } from '../data/phones';
+import { getFeaturedLaptops } from '../data/laptops';
 import { Link } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination } from 'swiper/modules';
@@ -13,7 +14,11 @@ import 'swiper/css/pagination';
 import { ArrowLeft, ChevronLeft, ChevronRight, MoveLeft, PanelLeft, ToggleLeft } from 'lucide-react';
 
 export default function Home() {
-  const bestSelling = getFeaturedProducts();
+  // Combine featured phones and laptops for best selling
+  const featuredPhones = getFeaturedProducts();
+  const featuredLaptops = getFeaturedLaptops();
+  const bestSelling = [...featuredPhones, ...featuredLaptops];
+  
   const newArrivals = getNewArrivals();
   const topBrands = getTopBrandProducts();
   const categories = [
@@ -67,7 +72,7 @@ export default function Home() {
           >
             {bestSelling.map((product) => (
               <SwiperSlide key={product.id}>
-                <DealCard product={{...product, brand: 'apple'}} />
+                <DealCard product={product} />
               </SwiperSlide>
             ))}
           </Swiper>
@@ -145,7 +150,7 @@ export default function Home() {
         </div>
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
           {newArrivals.map(product => (
-            <DealCard key={product.id} product={{...product, brand: 'apple'}} />
+            <DealCard key={product.id} product={product} />
           ))}
         </div>
       </section>
@@ -160,7 +165,7 @@ export default function Home() {
         </div>
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
           {topBrands.map(product => (
-            <DealCard key={product.id} product={{...product, brand: 'apple'}} />
+            <DealCard key={product.id} product={product} />
           ))}
         </div>
       </section>

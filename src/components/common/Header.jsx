@@ -1,19 +1,18 @@
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { User, ShoppingCart, Search, Menu, Moon, Sun, Heart } from 'lucide-react';
 import logo from '../../assets/img/fabulous-logo.png'
 import { useCart } from '../../context/CartContext';
 import { useWishlist } from '../../context/WishlistContext';
 import { useTheme } from '../../context/ThemeContext';
 import { useState } from 'react';
-import CartModal from './CartModal';
 import GlobalSearch from './GlobalSearch';
 import MobileSidebar from './MobileSidebar';
 
 export default function Header() {
+  const navigate = useNavigate();
   const { cartItems } = useCart();
   const { wishlistItems } = useWishlist();
   const { isDarkMode, toggleDarkMode } = useTheme();
-  const [isCartOpen, setIsCartOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   
@@ -121,7 +120,7 @@ export default function Header() {
             </Link>
             
             <button 
-              onClick={() => setIsCartOpen(true)}
+              onClick={() => navigate('/cart')}
               className="p-2 text-gray-700 dark:text-gray-200 hover:text-gold2 transition-colors relative"
             >
               <ShoppingCart className="w-5 h-5" />
@@ -135,7 +134,6 @@ export default function Header() {
         </div>
       </header>
       
-      <CartModal isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
       <GlobalSearch isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
       <MobileSidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
     </>

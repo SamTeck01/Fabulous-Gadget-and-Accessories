@@ -26,9 +26,16 @@ const phoneBrands = {
           display: '6.7" Super Retina XDR',
           chip: 'A17 Pro',
           camera: 'Triple 48MP + 12MP + 12MP',
-          battery: '4422 mAh'
+          battery: '4422 mAh',
+          storage: '512GB',
+          ram: '8GB',
+          os: 'iOS 17',
+          connectivity: '5G, WiFi 6E, Bluetooth 5.3'
         },
-        description: 'Forged in titanium with the most powerful iPhone chip ever. A17 Pro delivers exceptional performance.'
+        description: 'Forged in titanium with the most powerful iPhone chip ever. A17 Pro delivers exceptional performance with ProMotion technology and always-on display.',
+        warranty: '1 Year Apple Limited Warranty',
+        returnPolicy: '14 Days Return & Exchange',
+        shipping: 'Free Shipping'
       },
       {
         id: 'iphone-14',
@@ -102,9 +109,16 @@ const phoneBrands = {
           display: '6.7" HD+ PLS LCD',
           chip: 'Helio G85',
           camera: '48MP + 2MP',
-          battery: '5000 mAh'
+          battery: '5000 mAh',
+          storage: '64GB',
+          ram: '4GB',
+          os: 'Android 13',
+          connectivity: '4G LTE, WiFi, Bluetooth 5.0'
         },
-        description: 'Affordable smartphone with large display and long-lasting battery for everyday use.'
+        description: 'Affordable smartphone with large display and long-lasting battery for everyday use. Perfect for basic tasks and entertainment.',
+        warranty: '1 Year Samsung Warranty',
+        returnPolicy: '7 Days Return & Exchange',
+        shipping: 'Standard Shipping - ₦2,500'
       },
       {
         id: 'galaxy-s23',
@@ -225,33 +239,33 @@ const phoneBrands = {
 
 export const getFeaturedProducts = () => {
   return Object.values(phoneBrands)
-    .flatMap(brand => brand.products)
-    .map(product => ({
+    .flatMap(brand => brand.products.filter(product => product.featured).map(product => ({
       ...product,
+      brand: brand.id,
       type: 'phone',
-    }));
+    })));
 };
 
 export const getBrands = () => Object.values(phoneBrands).map(({ name, id, logo }) => ({ name, id, logo }));
 
 export const getNewArrivals = () => {
   return Object.values(phoneBrands)
-    .flatMap(brand => brand.products)
-    .sort((a, b) => new Date(b.detailedName) - new Date(a.detailedName))
-    .slice(0, 4)
-    .map(product => ({
+    .flatMap(brand => brand.products.map(product => ({
       ...product,
+      brand: brand.id,
       type: 'phone',
-    }));
+    })))
+    .sort((a, b) => new Date(b.detailedName) - new Date(a.detailedName))
+    .slice(0, 4);
 }
 
 export const getTopBrandProducts =()=> {
   return Object.values(phoneBrands)
-    .flatMap(brand => brand.products)
-    .map(product => ({
+    .flatMap(brand => brand.products.map(product => ({
       ...product,
+      brand: brand.id,
       type: 'phone',
-    }));
+    })));
 } 
 
 export const getBrandById = (id) => phoneBrands[id];

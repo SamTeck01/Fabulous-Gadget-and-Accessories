@@ -24,9 +24,16 @@ const laptopBrands = {
           processor: 'AMD Ryzen 7 5825U',
           memory: '16GB DDR4',
           storage: '512GB SSD',
-          display: '15.6" FHD Touchscreen'
+          display: '15.6" FHD Touchscreen',
+          graphics: 'AMD Radeon Graphics',
+          battery: 'Up to 10 hours',
+          weight: '1.75 kg',
+          os: 'Windows 11 Home'
         },
-        description: 'Versatile 2-in-1 laptop with powerful AMD Ryzen processor and stunning touchscreen display.'
+        description: 'Versatile 2-in-1 laptop with powerful AMD Ryzen processor and stunning touchscreen display. Perfect for productivity and creative work.',
+        warranty: '1 Year HP Limited Warranty',
+        returnPolicy: '14 Days Return & Exchange',
+        shipping: 'Free Shipping'
       },
       {
         id: 'hp-pavilion',
@@ -41,9 +48,16 @@ const laptopBrands = {
           processor: 'Intel Core i5-1135G7',
           memory: '8GB DDR4',
           storage: '256GB SSD',
-          display: '14" FHD'
+          display: '14" FHD',
+          graphics: 'Intel Iris Xe Graphics',
+          battery: 'Up to 8 hours',
+          weight: '1.41 kg',
+          os: 'Windows 11 Home'
         },
-        description: 'Sleek and portable laptop perfect for work and entertainment with long battery life.'
+        description: 'Sleek and portable laptop perfect for work and entertainment with long battery life. Ideal for students and professionals.',
+        warranty: '1 Year HP Limited Warranty',
+        returnPolicy: '7 Days Return & Exchange',
+        shipping: 'Standard Shipping - ₦3,000'
       },
       {
         id: 'hp-spectre-x360',
@@ -59,9 +73,16 @@ const laptopBrands = {
           processor: 'Intel Core i7-1255U',
           memory: '16GB LPDDR4x',
           storage: '1TB SSD',
-          display: '13.5" 3K2K OLED Touchscreen'
+          display: '13.5" 3K2K OLED Touchscreen',
+          graphics: 'Intel Iris Xe Graphics',
+          battery: 'Up to 12 hours',
+          weight: '1.34 kg',
+          os: 'Windows 11 Pro'
         },
-        description: 'Premium 2-in-1 with stunning OLED display and gem-cut design. Perfect for creators.'
+        description: 'Premium 2-in-1 with stunning OLED display and gem-cut design. Perfect for creators and professionals who demand the best.',
+        warranty: '2 Year HP Premium Warranty',
+        returnPolicy: '30 Days Return & Exchange',
+        shipping: 'Free Express Shipping'
       },
       {
         id: 'hp-victus-15',
@@ -77,9 +98,15 @@ const laptopBrands = {
           memory: '8GB DDR4',
           storage: '512GB SSD',
           display: '15.6" FHD 144Hz',
-          graphics: 'NVIDIA GeForce RTX 3050'
+          graphics: 'NVIDIA GeForce RTX 3050',
+          battery: 'Up to 6 hours',
+          weight: '2.29 kg',
+          os: 'Windows 11 Home'
         },
-        description: 'Affordable gaming laptop with RTX graphics and high refresh rate display.'
+        description: 'Affordable gaming laptop with RTX graphics and high refresh rate display. Great for gaming and content creation.',
+        warranty: '1 Year HP Gaming Warranty',
+        returnPolicy: '14 Days Return & Exchange',
+        shipping: 'Free Shipping'
       }
     ]
   },
@@ -102,9 +129,16 @@ const laptopBrands = {
           processor: 'Intel Core i7-1195G7',
           memory: '16GB LPDDR4x',
           storage: '512GB SSD',
-          display: '13.4" FHD+'
+          display: '13.4" FHD+',
+          graphics: 'Intel Iris Xe Graphics',
+          battery: 'Up to 14 hours',
+          weight: '1.27 kg',
+          os: 'Windows 11 Pro'
         },
-        description: 'Ultra-premium laptop with InfinityEdge display and exceptional build quality.'
+        description: 'Ultra-premium laptop with InfinityEdge display and exceptional build quality. Perfect for professionals on the go.',
+        warranty: '1 Year Dell Premium Support',
+        returnPolicy: '30 Days Return & Exchange',
+        shipping: 'Free Express Shipping'
       },
       {
         id: 'dell-inspiron-15',
@@ -119,9 +153,16 @@ const laptopBrands = {
           processor: 'Intel Core i3-1115G4',
           memory: '8GB DDR4',
           storage: '256GB SSD',
-          display: '15.6" HD'
+          display: '15.6" HD',
+          graphics: 'Intel UHD Graphics',
+          battery: 'Up to 7 hours',
+          weight: '1.85 kg',
+          os: 'Windows 11 Home'
         },
-        description: 'Reliable everyday laptop for students and professionals at an affordable price.'
+        description: 'Reliable everyday laptop for students and professionals at an affordable price. Great value for basic computing needs.',
+        warranty: '1 Year Dell Limited Warranty',
+        returnPolicy: '7 Days Return & Exchange',
+        shipping: 'Standard Shipping - ₦2,500'
       },
       {
         id: 'dell-g15',
@@ -137,9 +178,15 @@ const laptopBrands = {
           memory: '16GB DDR5',
           storage: '512GB SSD',
           display: '15.6" FHD 165Hz',
-          graphics: 'NVIDIA GeForce RTX 4050'
+          graphics: 'NVIDIA GeForce RTX 4050',
+          battery: 'Up to 5 hours',
+          weight: '2.65 kg',
+          os: 'Windows 11 Home'
         },
-        description: 'Powerful gaming laptop with latest RTX 40-series graphics and high refresh display.'
+        description: 'Powerful gaming laptop with latest RTX 40-series graphics and high refresh display. Dominate your games with exceptional performance.',
+        warranty: '1 Year Dell Gaming Warranty',
+        returnPolicy: '14 Days Return & Exchange',
+        shipping: 'Free Shipping'
       }
     ]
   },
@@ -161,9 +208,16 @@ const laptopBrands = {
           processor: 'AMD Ryzen 5 5500U',
           memory: '8GB DDR4',
           storage: '512GB SSD',
-          display: '14" FHD'
+          display: '14" FHD',
+          graphics: 'AMD Radeon Graphics',
+          battery: 'Up to 11 hours',
+          weight: '1.66 kg',
+          os: 'Windows 11 Home'
         },
-        description: 'Stylish and practical laptop with excellent performance for everyday computing.'
+        description: 'Stylish and practical laptop with excellent performance for everyday computing. Perfect balance of performance and portability.',
+        warranty: '1 Year Lenovo Limited Warranty',
+        returnPolicy: '7 Days Return & Exchange',
+        shipping: 'Free Shipping'
       },
       {
         id: 'lenovo-thinkpad-e14',
@@ -179,9 +233,16 @@ const laptopBrands = {
           processor: 'Intel Core i5-1235U',
           memory: '16GB DDR4',
           storage: '512GB SSD',
-          display: '14" FHD IPS'
+          display: '14" FHD IPS',
+          graphics: 'Intel Iris Xe Graphics',
+          battery: 'Up to 12 hours',
+          weight: '1.64 kg',
+          os: 'Windows 11 Pro'
         },
-        description: 'Business-class laptop with legendary ThinkPad reliability and security features.'
+        description: 'Business-class laptop with legendary ThinkPad reliability and security features. Built for professionals who need durability.',
+        warranty: '1 Year Lenovo ThinkPad Warranty',
+        returnPolicy: '14 Days Return & Exchange',
+        shipping: 'Free Shipping'
       },
       {
         id: 'lenovo-legion-5',
@@ -197,9 +258,15 @@ const laptopBrands = {
           memory: '16GB DDR4',
           storage: '512GB SSD',
           display: '15.6" FHD 165Hz',
-          graphics: 'NVIDIA GeForce RTX 3060'
+          graphics: 'NVIDIA GeForce RTX 3060',
+          battery: 'Up to 6 hours',
+          weight: '2.4 kg',
+          os: 'Windows 11 Home'
         },
-        description: 'High-performance gaming laptop with excellent cooling and RGB keyboard.'
+        description: 'High-performance gaming laptop with excellent cooling and RGB keyboard. Perfect for serious gamers and content creators.',
+        warranty: '1 Year Lenovo Legion Warranty',
+        returnPolicy: '14 Days Return & Exchange',
+        shipping: 'Free Shipping'
       },
       {
         id: 'lenovo-yoga-9i',
@@ -215,9 +282,16 @@ const laptopBrands = {
           processor: 'Intel Core i7-1260P',
           memory: '16GB LPDDR5',
           storage: '1TB SSD',
-          display: '14" 2.8K OLED Touchscreen'
+          display: '14" 2.8K OLED Touchscreen',
+          graphics: 'Intel Iris Xe Graphics',
+          battery: 'Up to 14 hours',
+          weight: '1.42 kg',
+          os: 'Windows 11 Home'
         },
-        description: 'Premium 2-in-1 with stunning OLED display and rotating soundbar hinge.'
+        description: 'Premium 2-in-1 with stunning OLED display and rotating soundbar hinge. Ultimate luxury laptop for creators and professionals.',
+        warranty: '2 Year Lenovo Premium Warranty',
+        returnPolicy: '30 Days Return & Exchange',
+        shipping: 'Free Express Shipping'
       }
     ]
   }
@@ -227,11 +301,20 @@ export const getLaptopBrands = () => Object.values(laptopBrands).map(({ name, id
 
 export const getAllLaptopProducts = () => {
   return Object.values(laptopBrands)
-    .flatMap(brand => brand.products)
-    .map(product => ({
+    .flatMap(brand => brand.products.map(product => ({
       ...product,
+      brand: brand.id,
       type: 'laptop',
-    }));
+    })));
+};
+
+export const getFeaturedLaptops = () => {
+  return Object.values(laptopBrands)
+    .flatMap(brand => brand.products.filter(product => product.featured).map(product => ({
+      ...product,
+      brand: brand.id,
+      type: 'laptop',
+    })));
 };
 
 export const getBrandById = (id) => laptopBrands[id];
@@ -241,3 +324,6 @@ export const getProductById = (brandId, productId) => {
   if (!brand) return null;
   return brand.products.find(product => product.id === productId);
 };
+
+// Alias for ProductDetail page
+export const getLaptopProductById = getProductById;
