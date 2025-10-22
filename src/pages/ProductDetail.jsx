@@ -1,17 +1,20 @@
 import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { ChevronLeft, ChevronRight, Star, Minus, Plus } from 'lucide-react';
+import { ArrowLeft02Icon, ArrowRight02Icon, StarIcon, Remove01Icon, Add01Icon, FavouriteIcon } from 'hugeicons-react';
 import { Helmet } from 'react-helmet';
 import { getProductById } from '../data/phones';
 import { getProductById as getLaptopProductById } from '../data/laptops';
 import { useCart } from '../context/CartContext';
+import { useWishlist } from '../context/WishlistContext';
 import { useToast } from '../context/ToastContext';
 
 const ProductDetail = () => {
   const { brand, productId } = useParams();
   const navigate = useNavigate();
   const { addToCart } = useCart();
+  const { isInWishlist, toggleWishlist } = useWishlist();
   const toast = useToast();
+  const inWishlist = isInWishlist(productId);
   
   const [selectedImage, setSelectedImage] = useState(0);
   const [selectedSize, setSelectedSize] = useState('M');
@@ -117,14 +120,14 @@ const ProductDetail = () => {
                 disabled={selectedImage === 0}
                 className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white dark:bg-gray-700 rounded-full flex items-center justify-center shadow-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                <ChevronLeft className="w-6 h-6" />
+                <ArrowLeft02Icon size={24} />
               </button>
               <button
                 onClick={() => setSelectedImage(Math.min(productImages.length - 1, selectedImage + 1))}
                 disabled={selectedImage === productImages.length - 1}
                 className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white dark:bg-gray-700 rounded-full flex items-center justify-center shadow-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                <ChevronRight className="w-6 h-6" />
+                <ArrowRight02Icon size={24} />
               </button>
             </div>
 
@@ -154,13 +157,14 @@ const ProductDetail = () => {
             <div className="flex items-center gap-2 mb-4">
               <div className="flex items-center">
                 {[...Array(5)].map((_, i) => (
-                  <Star
+                  <StarIcon
                     key={i}
-                    className={`w-5 h-5 ${
-                      i < Math.floor(product.rating || 4.5)
-                        ? 'fill-yellow-400 text-yellow-400'
-                        : 'text-gray-300'
-                    }`}
+                    size={20}
+                    style={{
+                      fill: i < Math.floor(product.rating || 4.5) ? '#eab308' : 'none',
+                      stroke: i < Math.floor(product.rating || 4.5) ? '#eab308' : '#d1d5db',
+                      strokeWidth: 2
+                    }}
                   />
                 ))}
               </div>
@@ -209,21 +213,21 @@ const ProductDetail = () => {
               </div>
             </div>
 
-            {/* Quantity and Add to Cart */}
+            {/* Quantity, Add to Cart, and Wishlist */}
             <div className="flex gap-4 mb-6">
               <div className="flex items-center border-2 border-gray-300 dark:border-gray-600 rounded-lg">
                 <button
                   onClick={() => handleQuantityChange(-1)}
                   className="px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700 transition"
                 >
-                  <Minus className="w-4 h-4" />
+                  <Remove01Icon size={16} />
                 </button>
                 <span className="px-6 py-3 font-semibold dark:text-white">{quantity}</span>
                 <button
                   onClick={() => handleQuantityChange(1)}
                   className="px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700 transition"
                 >
-                  <Plus className="w-4 h-4" />
+                  <Add01Icon size={16} />
                 </button>
               </div>
               <button
@@ -231,6 +235,23 @@ const ProductDetail = () => {
                 className="flex-1 bg-black text-white py-3 px-8 rounded-lg hover:bg-gray-800 transition font-semibold"
               >
                 Add to cart
+              </button>
+              <button
+                onClick={() => {
+                  toggleWishlist(product);
+                  toast.success(inWishlist ? `${product.name} removed from wishlist` : `${product.name} added to wishlist`);
+                }}
+                className="px-6 py-3 border-2 border-gray-300 dark:border-gray-600 rounded-lg hover:border-red-500 dark:hover:border-red-500 transition"
+                aria-label={inWishlist ? 'Remove from wishlist' : 'Add to wishlist'}
+              >
+                <FavouriteIcon
+                  size={24}
+                  style={{
+                    fill: inWishlist ? '#ef4444' : 'none',
+                    stroke: inWishlist ? '#ef4444' : 'currentColor',
+                    strokeWidth: 2
+                  }}
+                />
               </button>
             </div>
 

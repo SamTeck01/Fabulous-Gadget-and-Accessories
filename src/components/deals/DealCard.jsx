@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ArrowUpRight, Heart, ShoppingCart } from 'lucide-react';
+import { FavouriteIcon, ShoppingCart01Icon } from 'hugeicons-react';
 import { useWishlist } from '../../context/WishlistContext';
 import { useCart } from '../../context/CartContext';
 import { useToast } from '../../context/ToastContext';
@@ -51,12 +51,14 @@ export default function DealCard({ product, type }) {
             className="absolute top-3 right-3 w-8 h-8 rounded-full bg-gray-800/60 dark:bg-gray-900/60 backdrop-blur-sm flex items-center justify-center hover:bg-gray-800/80 transition-colors"
             aria-label="Add to wishlist"
           >
-            <Heart 
-              className={`w-5 h-5 transition-all ${
-                inWishlist 
-                  ? 'fill-red-500 text-red-500' 
-                  : 'text-white'
-              }`}
+            <FavouriteIcon
+              size={20}
+              style={{
+                fill: inWishlist ? '#fb2c36' : 'none',
+                stroke: inWishlist ? '#fb2c36 ' : '#fff',
+                strokeWidth: 2
+              }}
+              className="transition-all"
             />
           </button>
 
@@ -86,7 +88,10 @@ export default function DealCard({ product, type }) {
             className="flex-shrink-0 w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-700 flex items-center justify-center hover:bg-gold2 hover:text-white transition-colors z-20"
             aria-label="Add to cart"
           >
-            <ShoppingCart className="w-5 h-5 text-gray-600 dark:text-gray-300 hover:text-white transition-colors" />
+            <ShoppingCart01Icon
+              size={20}
+              className="text-gray-600 dark:text-gray-300 group-hover:text-white transition-colors"
+            />
           </button>
         </div>
       </div>

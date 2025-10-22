@@ -1,5 +1,5 @@
 import { useLocation, useNavigate, Link } from 'react-router-dom';
-import { CheckCircle, Package, Truck, Home } from 'lucide-react';
+import { CheckmarkCircle02Icon, PackageIcon, DeliveryTruck01Icon, Home01Icon } from 'hugeicons-react';
 import { Helmet } from 'react-helmet';
 import { useEffect } from 'react';
 
@@ -26,7 +26,7 @@ export default function OrderConfirmation() {
         <div className="bg-white dark:bg-dark-secondary rounded-lg shadow-lg p-8 text-center">
           <div className="flex justify-center mb-6">
             <div className="w-20 h-20 bg-green-100 dark:bg-green-900/20 rounded-full flex items-center justify-center">
-              <CheckCircle className="w-12 h-12 text-green-600 dark:text-green-400" />
+              <CheckmarkCircle02Icon size={48} color="#16a34a" />
             </div>
           </div>
           
@@ -96,7 +96,7 @@ export default function OrderConfirmation() {
           {/* Next Steps */}
           <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-6 mb-8">
             <h3 className="font-semibold mb-4 flex items-center justify-center gap-2 dark:text-white">
-              <Package className="w-5 h-5" />
+              <PackageIcon size={20} />
               What Happens Next?
             </h3>
             <div className="space-y-3 text-sm text-left">
@@ -133,7 +133,7 @@ export default function OrderConfirmation() {
               to="/"
               className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-gold2 text-white rounded-lg hover:bg-gold2/90 transition-colors font-medium"
             >
-              <Home className="w-5 h-5" />
+              <Home01Icon size={20} />
               Back to Home
             </Link>
             <Link

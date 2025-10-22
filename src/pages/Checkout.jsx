@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useCart } from '../context/CartContext';
 import { useNavigate } from 'react-router-dom';
 import { useToast } from '../context/ToastContext';
-import { CreditCard, Truck, MapPin, Phone, Mail, User } from 'lucide-react';
+import { CreditCardIcon, DeliveryTruck01Icon, Location01Icon, Call02Icon, Mail01Icon, UserIcon } from 'hugeicons-react';
 import { Helmet } from 'react-helmet';
 
 export default function Checkout() {
@@ -144,7 +144,7 @@ export default function Checkout() {
               {/* Personal Information */}
               <div className="bg-white dark:bg-dark-secondary rounded-lg p-6 shadow-md">
                 <h2 className="text-xl font-semibold mb-4 flex items-center gap-2 dark:text-white">
-                  <User className="w-5 h-5" />
+                  <UserIcon size={20} />
                   Personal Information
                 </h2>
                 <div className="grid md:grid-cols-2 gap-4">
@@ -190,7 +190,7 @@ export default function Checkout() {
               {/* Shipping Address */}
               <div className="bg-white dark:bg-dark-secondary rounded-lg p-6 shadow-md">
                 <h2 className="text-xl font-semibold mb-4 flex items-center gap-2 dark:text-white">
-                  <Truck className="w-5 h-5" />
+                  <DeliveryTruck01Icon size={20} />
                   Shipping Address
                 </h2>
                 <div className="space-y-4">
@@ -250,7 +250,7 @@ export default function Checkout() {
               {/* Payment Method */}
               <div className="bg-white dark:bg-dark-secondary rounded-lg p-6 shadow-md">
                 <h2 className="text-xl font-semibold mb-4 flex items-center gap-2 dark:text-white">
-                  <CreditCard className="w-5 h-5" />
+                  <CreditCardIcon size={20} />
                   Payment Method
                 </h2>
                 <div className="space-y-3">

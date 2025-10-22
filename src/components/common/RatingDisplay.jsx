@@ -1,13 +1,7 @@
-import { Star } from 'lucide-react';
+import { StarIcon } from 'hugeicons-react';
 
 export default function RatingDisplay({ rating, reviews, size = 'sm', showCount = true }) {
   if (!rating) return null;
-
-  const sizes = {
-    sm: 'w-4 h-4',
-    md: 'w-5 h-5',
-    lg: 'w-6 h-6'
-  };
 
   const textSizes = {
     sm: 'text-sm',
@@ -19,13 +13,14 @@ export default function RatingDisplay({ rating, reviews, size = 'sm', showCount 
     <div className="flex items-center gap-2">
       <div className="flex">
         {[...Array(5)].map((_, i) => (
-          <Star 
+          <StarIcon 
             key={i} 
-            className={`${sizes[size]} ${
-              i < Math.floor(rating) 
-                ? 'fill-yellow-500 text-yellow-500' 
-                : 'text-gray-300 dark:text-gray-600'
-            }`} 
+            size={size === 'sm' ? 16 : size === 'md' ? 20 : 24}
+            style={{
+              fill: i < Math.floor(rating) ? '#eab308' : 'none',
+              stroke: i < Math.floor(rating) ? '#eab308' : '#d1d5db',
+              strokeWidth: 2
+            }}
           />
         ))}
       </div>

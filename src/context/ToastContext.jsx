@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useCallback } from 'react';
-import { X, CheckCircle, AlertCircle, Info, AlertTriangle } from 'lucide-react';
+import { Cancel01Icon, CheckmarkCircle02Icon, AlertCircleIcon, InformationCircleIcon, Alert02Icon } from 'hugeicons-react';
 
 const ToastContext = createContext();
 
@@ -48,10 +48,10 @@ const ToastContainer = ({ toasts, removeToast }) => {
 
 const Toast = ({ toast, onClose }) => {
   const icons = {
-    success: <CheckCircle className="w-5 h-5 text-green-500" />,
-    error: <AlertCircle className="w-5 h-5 text-red-500" />,
-    info: <Info className="w-5 h-5 text-blue-500" />,
-    warning: <AlertTriangle className="w-5 h-5 text-yellow-500" />,
+    success: <CheckmarkCircle02Icon size={20} color="#22c55e" />,
+    error: <AlertCircleIcon size={20} color="#ef4444" />,
+    info: <InformationCircleIcon size={20} color="#3b82f6" />,
+    warning: <Alert02Icon size={20} color="#eab308" />,
   };
 
   const bgColors = {
@@ -72,7 +72,7 @@ const Toast = ({ toast, onClose }) => {
         className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
         aria-label="Close notification"
       >
-        <X className="w-4 h-4" />
+        <Cancel01Icon size={16} />
       </button>
     </div>
   );

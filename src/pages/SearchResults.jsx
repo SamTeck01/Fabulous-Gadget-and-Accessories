@@ -3,7 +3,7 @@ import { useSearchParams, Link } from 'react-router-dom';
 import DealCard from '../components/deals/DealCard';
 import { getFeaturedProducts } from '../data/phones';
 import { getAllLaptopProducts } from '../data/laptops';
-import { Search, Filter, SortAsc } from 'lucide-react';
+import { Search01Icon, FilterIcon, Sorting01Icon } from 'hugeicons-react';
 
 export default function SearchResults() {
   const [searchParams] = useSearchParams();
@@ -58,7 +58,7 @@ export default function SearchResults() {
       {/* Search Header */}
       <div className="mb-8">
         <div className="flex items-center mb-4">
-          <Search className="w-6 h-6 text-gold2 mr-2" />
+          <Search01Icon size={24} className="text-gold2 mr-2" />
           <h1 className="text-3xl font-bold text-gray-800 dark:text-white">
             Search Results
           </h1>
@@ -75,7 +75,7 @@ export default function SearchResults() {
       <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6 space-y-4 md:space-y-0">
         <div className="flex items-center space-x-4">
           <div className="flex items-center">
-            <Filter className="w-4 h-4 text-gray-500 mr-2" />
+            <FilterIcon size={16} className="text-gray-500 mr-2" />
             <select
               value={filterType}
               onChange={(e) => setFilterType(e.target.value)}
@@ -88,7 +88,7 @@ export default function SearchResults() {
           </div>
           
           <div className="flex items-center">
-            <SortAsc className="w-4 h-4 text-gray-500 mr-2" />
+            <Sorting01Icon size={16} className="text-gray-500 mr-2" />
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
@@ -109,7 +109,7 @@ export default function SearchResults() {
       {/* Results */}
       {filteredProducts.length === 0 ? (
         <div className="text-center py-12">
-          <Search className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+          <Search01Icon size={64} className="text-gray-400 mx-auto mb-4" />
           <h3 className="text-xl font-semibold text-gray-600 dark:text-gray-300 mb-2">
             No products found
           </h3>

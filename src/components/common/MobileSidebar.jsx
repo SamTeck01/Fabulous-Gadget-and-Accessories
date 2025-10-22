@@ -1,5 +1,5 @@
 import { Link, NavLink } from 'react-router-dom';
-import { X, Home, Smartphone, Laptop, User, ShoppingCart, Search, Moon, Sun } from 'lucide-react';
+import { Cancel01Icon, Home01Icon, SmartPhone01Icon, LaptopIcon, UserIcon, ShoppingCart01Icon, Search01Icon, Moon02Icon, Sun03Icon } from 'hugeicons-react';
 import { useCart } from '../../context/CartContext';
 import { useTheme } from '../../context/ThemeContext';
 
@@ -9,9 +9,9 @@ export default function MobileSidebar({ isOpen, onClose }) {
   const cartCount = cartItems.reduce((total, item) => total + item.quantity, 0);
 
   const navigationItems = [
-    { name: 'Home', path: '/', icon: Home },
-    { name: 'Phones', path: '/phone-deals', icon: Smartphone },
-    { name: 'Laptops', path: '/laptop-deals', icon: Laptop },
+    { name: 'Home', path: '/', icon: Home01Icon },
+    { name: 'Phones', path: '/phone-deals', icon: SmartPhone01Icon },
+    { name: 'Laptops', path: '/laptop-deals', icon: LaptopIcon },
   ];
 
   if (!isOpen) return null;
@@ -27,7 +27,7 @@ export default function MobileSidebar({ isOpen, onClose }) {
             onClick={onClose}
             className="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300"
           >
-            <X className="w-6 h-6" />
+            <Cancel01Icon size={24} />
           </button>
         </div>
 
@@ -46,7 +46,7 @@ export default function MobileSidebar({ isOpen, onClose }) {
                   }`
                 }
               >
-                <item.icon className="w-5 h-5 mr-3" />
+                <item.icon size={20} className="mr-3" />
                 {item.name}
               </NavLink>
             ))}
@@ -55,12 +55,12 @@ export default function MobileSidebar({ isOpen, onClose }) {
           <div className="mt-6 pt-6 border-t border-gray-200 dark:border-gray-700">
             <div className="space-y-2">
               <button className="flex items-center w-full px-3 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors">
-                <User className="w-5 h-5 mr-3" />
+                <UserIcon size={20} className="mr-3" />
                 Account
               </button>
               
               <button className="flex items-center w-full px-3 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors">
-                <ShoppingCart className="w-5 h-5 mr-3" />
+                <ShoppingCart01Icon size={20} className="mr-3" />
                 Cart
                 {cartCount > 0 && (
                   <span className="ml-auto bg-gold2 text-white text-xs font-semibold rounded-full h-5 w-5 flex items-center justify-center">
@@ -74,9 +74,9 @@ export default function MobileSidebar({ isOpen, onClose }) {
                 className="flex items-center w-full px-3 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
               >
                 {isDarkMode ? (
-                  <Sun className="w-5 h-5 mr-3" />
+                  <Sun03Icon size={20} className="mr-3" />
                 ) : (
-                  <Moon className="w-5 h-5 mr-3" />
+                  <Moon02Icon size={20} className="mr-3" />
                 )}
                 {isDarkMode ? 'Light Mode' : 'Dark Mode'}
               </button>

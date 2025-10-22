@@ -1,5 +1,5 @@
 import { Link, NavLink, useNavigate } from 'react-router-dom';
-import { User, ShoppingCart, Search, Menu, Moon, Sun, Heart } from 'lucide-react';
+import { UserIcon, ShoppingCart01Icon, Search01Icon, Menu01Icon, Moon02Icon, Sun03Icon, FavouriteIcon } from 'hugeicons-react';
 import logo from '../../assets/img/fabulous-logo.png'
 import { useCart } from '../../context/CartContext';
 import { useWishlist } from '../../context/WishlistContext';
@@ -29,7 +29,7 @@ export default function Header() {
               onClick={() => setIsSidebarOpen(true)}
               className="p-2 text-gray-700 dark:text-gray-200 hover:text-gold2 transition-colors"
             >
-              <Menu className="w-6 h-6" />
+              <Menu01Icon size={24} />
             </button>
 
             <Link to='/' id='logo' className='w-fit p-0'>
@@ -93,25 +93,25 @@ export default function Header() {
               onClick={() => setIsSearchOpen(true)}
               className="p-2 text-gray-700 dark:text-gray-200 hover:text-gold2 transition-colors"
             >
-              <Search className="w-5 h-5" />
+              <Search01Icon size={20} />
             </button>
             
             <button
               onClick={toggleDarkMode}
               className="p-2 text-gray-700 dark:text-gray-200 hover:text-gold2 transition-colors"
             >
-              {isDarkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+              {isDarkMode ? <Sun03Icon size={20} /> : <Moon02Icon size={20} />}
             </button>
             
             <button className="p-2 text-gray-700 dark:text-gray-200 hover:text-gold2 transition-colors">
-              <User className="w-5 h-5" />
+              <UserIcon size={20} />
             </button>
             
             <Link 
               to="/wishlist"
               className="p-2 text-gray-700 dark:text-gray-200 hover:text-gold2 transition-colors relative"
             >
-              <Heart className="w-5 h-5" />
+              <FavouriteIcon size={20} />
               {wishlistCount > 0 && (
                 <span className="absolute -top-[3px] -right-[3px] bg-red-500 text-white text-xs font-semibold rounded-full h-4 w-4 flex items-center justify-center">
                   {wishlistCount}
@@ -123,7 +123,7 @@ export default function Header() {
               onClick={() => navigate('/cart')}
               className="p-2 text-gray-700 dark:text-gray-200 hover:text-gold2 transition-colors relative"
             >
-              <ShoppingCart className="w-5 h-5" />
+              <ShoppingCart01Icon size={20} />
               {cartCount > 0 && (
                 <span className="absolute -top-[3px] -right-[3px] bg-gold2 text-white text-xs font-semibold rounded-full h-4 w-4 flex items-center justify-center">
                   {cartCount}

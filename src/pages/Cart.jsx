@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
-import { Minus, Plus, Trash2 } from 'lucide-react';
+import { Remove01Icon, Add01Icon, Delete02Icon } from 'hugeicons-react';
 import { useCart } from '../context/CartContext';
 
 export default function Cart() {
@@ -50,7 +50,7 @@ export default function Cart() {
               onClick={handleRemoveSelected}
               className="flex items-center gap-2 text-red-600 hover:text-red-700 dark:text-red-400"
             >
-              <Trash2 className="w-5 h-5" />
+              <Delete02Icon size={20} />
               Remove
             </button>
           )}
@@ -134,7 +134,7 @@ export default function Cart() {
                         onClick={() => updateQuantity(item.id, item.quantity - 1)}
                         className="w-8 h-8 flex items-center justify-center border border-gray-300 dark:border-gray-600 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition"
                       >
-                        <Minus className="w-4 h-4" />
+                        <Remove01Icon size={16} />
                       </button>
                       <span className="w-12 text-center font-semibold dark:text-white">
                         {item.quantity}
@@ -143,7 +143,7 @@ export default function Cart() {
                         onClick={() => updateQuantity(item.id, item.quantity + 1)}
                         className="w-8 h-8 flex items-center justify-center border border-gray-300 dark:border-gray-600 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition"
                       >
-                        <Plus className="w-4 h-4" />
+                        <Add01Icon size={16} />
                       </button>
                     </div>
 
@@ -156,7 +156,7 @@ export default function Cart() {
                         onClick={() => removeFromCart(item.id)}
                         className="text-sm text-red-600 hover:text-red-700 dark:text-red-400 flex items-center gap-1 ml-auto mt-1"
                       >
-                        <Trash2 className="w-4 h-4" />
+                        <Delete02Icon size={16} />
                         Remove
                       </button>
                     </div>

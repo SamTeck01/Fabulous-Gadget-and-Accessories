@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Facebook, Twitter, Instagram, Linkedin } from 'lucide-react';
+import { Facebook01Icon, NewTwitterIcon, Instagram01Icon, Linkedin01Icon } from 'hugeicons-react';
 
 const Footer = () => {
   return (
@@ -38,16 +38,16 @@ const Footer = () => {
         <div className="md:w-1/3 flex flex-col items-center md:items-end">
           <div className="flex space-x-4 mb-4">
             <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="hover:opacity-80">
-              <Facebook className="h-6 w-6" />
+              <Facebook01Icon size={24} />
             </a>
             <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter" className="hover:opacity-80">
-              <Twitter className="h-6 w-6" />
+              <NewTwitterIcon size={24} />
             </a>
             <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="hover:opacity-80">
-              <Instagram className="h-6 w-6" />
+              <Instagram01Icon size={24} />
             </a>
             <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="hover:opacity-80">
-              <Linkedin className="h-6 w-6" />
+              <Linkedin01Icon size={24} />
             </a>
           </div>
           <p className="text-sm text-yellow-300">&copy; {new Date().getFullYear()} Fabulous Gadget. All rights reserved.</p>

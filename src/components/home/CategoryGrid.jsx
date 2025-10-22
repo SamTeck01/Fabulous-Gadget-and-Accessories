@@ -1,16 +1,16 @@
 // components/home/CategoryGrid.jsx
 import { Link } from 'react-router-dom';
-import { Smartphone, Laptop, Headphones, BatteryFull, Speaker, Plug, Clock, Usb } from 'lucide-react';
+import { SmartPhone01Icon, LaptopIcon, HeadphonesIcon, BatteryFullIcon, Speaker01Icon, Plug01Icon, Clock01Icon, UsbIcon } from 'hugeicons-react';
 
 const categories = [
-  { name: 'Phones', to: '/phone-deals', icon: <Smartphone size={24} /> },
-  { name: 'Laptops', to: '/laptop-deals', icon: <Laptop size={24} /> },
-  { name: 'Power Banks', to: '/powerbank-deals', icon: <BatteryFull size={24} /> },
-  { name: 'Headphones', to: '/headphone-deals', icon: <Headphones size={24} /> },
-  { name: 'Speakers', to: '/speaker-deals', icon: <Speaker size={24} /> },
-  { name: 'Chargers', to: '/charger-deals', icon: <Plug size={24} /> },
-  { name: 'Smart Watches', to: '/smartwatch-deals', icon: <Clock size={24} /> },
-  { name: 'Flash Drives', to: '/flashdrive-deals', icon: <Usb size={24} /> },
+  { name: 'Phones', to: '/phone-deals', icon: <SmartPhone01Icon size={24} /> },
+  { name: 'Laptops', to: '/laptop-deals', icon: <LaptopIcon size={24} /> },
+  { name: 'Power Banks', to: '/powerbank-deals', icon: <BatteryFullIcon size={24} /> },
+  { name: 'Headphones', to: '/headphone-deals', icon: <HeadphonesIcon size={24} /> },
+  { name: 'Speakers', to: '/speaker-deals', icon: <Speaker01Icon size={24} /> },
+  { name: 'Chargers', to: '/charger-deals', icon: <Plug01Icon size={24} /> },
+  { name: 'Smart Watches', to: '/smartwatch-deals', icon: <Clock01Icon size={24} /> },
+  { name: 'Flash Drives', to: '/flashdrive-deals', icon: <UsbIcon size={24} /> },
 ];
 
 export default function CategoryGrid() {

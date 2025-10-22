@@ -11,7 +11,7 @@ import accessories from '../assets/img/Artboard_1_copy_7.png';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-import { ArrowLeft, ChevronLeft, ChevronRight, MoveLeft, PanelLeft, ToggleLeft } from 'lucide-react';
+import { ArrowLeft01Icon, ArrowLeft02Icon, ArrowRight01Icon, ArrowRight02Icon, MoveLeftIcon } from 'hugeicons-react';
 
 export default function Home() {
   // Combine featured phones and laptops for best selling
@@ -45,7 +45,7 @@ export default function Home() {
 
         <div className='md:flex md:flex-row gap-2'>
           <button className="hidden md:block custom-prev cursor-pointer bg-transparent ">
-            <ChevronLeft size={60} className='-mx-2' />
+            <ArrowLeft01Icon size={60} className='-mx-2' />
           </button>
 
           <Swiper
@@ -78,14 +78,14 @@ export default function Home() {
           </Swiper>
 
           <button className="hidden md:block custom-next cursor-pointer">
-            <ChevronRight size={60} className='-mx-2'/>
+            <ArrowRight01Icon size={60} className='-mx-2'/>
           </button>
         </div>  
         
         {/* Custom Pagination */}
         <div className='flex justify-between md:justify-center mt-3 '>
           <button className="block md:hidden custom-prev cursor-pointer bg-transparent ">
-            <ChevronLeft size={50} className='-mx-2' />
+            <ArrowLeft01Icon size={50} className='-mx-2' />
           </button>
 
           <div className='bg-ash/40 w-fit h-fit px-4 py-1 rounded-2xl'>
@@ -93,7 +93,7 @@ export default function Home() {
           </div>
 
           <button className="block md:hidden custom-next cursor-pointer">
-            <ChevronRight size={50} className='-mx-2'/>
+            <ArrowRight01Icon size={50} className='-mx-2'/>
           </button>
         </div>  
       </section>

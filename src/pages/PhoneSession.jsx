@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useMemo, useState } from 'react';
 import { Helmet } from 'react-helmet';
-import { Star } from 'lucide-react';
+import { StarIcon } from 'hugeicons-react';
 import DealCard from '../components/deals/DealCard';
 import { getBrandById } from '../data/phones';
 import LoadingSpinner from '../components/common/LoadingSpinner';
@@ -111,7 +111,7 @@ export default function PhoneSession() {
         {featuredProducts.length > 0 && (
           <div className="mb-12">
             <div className="flex items-center gap-2 mb-6">
-              <Star className="w-6 h-6 text-gold2 fill-gold2" />
+              <StarIcon size={24} variant="solid" color="#FF9500" />
               <h2 className="text-2xl font-bold dark:text-white">Featured Products</h2>
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">

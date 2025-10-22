@@ -2,7 +2,7 @@ import { useWishlist } from '../context/WishlistContext';
 import { useCart } from '../context/CartContext';
 import { useToast } from '../context/ToastContext';
 import { Link } from 'react-router-dom';
-import { Trash2, ShoppingCart, Heart } from 'lucide-react';
+import { Delete02Icon, ShoppingCart01Icon, FavouriteIcon } from 'hugeicons-react';
 import { Helmet } from 'react-helmet';
 
 export default function Wishlist() {
@@ -28,7 +28,7 @@ export default function Wishlist() {
         </Helmet>
         <div className="container mx-auto px-4 text-center">
           <div className="max-w-md mx-auto">
-            <Heart className="w-24 h-24 mx-auto mb-6 text-gray-300 dark:text-gray-600" />
+            <FavouriteIcon size={96} className="mx-auto mb-6 text-gray-300 dark:text-gray-600" />
             <h1 className="text-3xl font-bold mb-4 dark:text-white">Your Wishlist is Empty</h1>
             <p className="text-gray-600 dark:text-gray-400 mb-8">
               Save your favorite products to your wishlist and shop them later!
@@ -117,7 +117,7 @@ export default function Wishlist() {
                     onClick={() => handleAddToCart(product)}
                     className="flex-1 bg-gold2 text-white py-2 rounded-lg hover:bg-gold2/90 transition-colors flex items-center justify-center gap-2 font-medium"
                   >
-                    <ShoppingCart className="w-4 h-4" />
+                    <ShoppingCart01Icon size={16} />
                     Add to Cart
                   </button>
                   <button
@@ -125,7 +125,7 @@ export default function Wishlist() {
                     className="p-2 border border-red-500 text-red-500 rounded-lg hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors"
                     aria-label="Remove from wishlist"
                   >
-                    <Trash2 className="w-5 h-5" />
+                    <Delete02Icon size={20} />
                   </button>
                 </div>
               </div>

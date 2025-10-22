@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Plus, Edit, Trash2, LogOut } from 'lucide-react';
+import { Add01Icon, Edit02Icon, Delete02Icon, Logout01Icon } from 'hugeicons-react';
 import { getFeaturedProducts } from '../../data/phones';
 import { getLaptopBrands } from '../../data/laptops';
 
@@ -35,7 +35,7 @@ export default function AdminPage() {
             to="/admin-login" 
             className="flex items-center text-red-600 hover:text-red-800"
           >
-            <LogOut className="mr-1" /> Logout
+            <Logout01Icon size={20} className="mr-1" /> Logout
           </Link>
         </div>
 
@@ -76,7 +76,7 @@ export default function AdminPage() {
                 className="bg-gold2 hover:bg-dark-orange text-white px-4 py-2 rounded-md flex items-center"
                 onClick={() => alert('Add Product functionality coming soon!')}
               >
-                <Plus className="mr-1" /> Add Product
+                <Add01Icon size={20} className="mr-1" /> Add Product
               </button>
             </div>
 
@@ -122,13 +122,13 @@ export default function AdminPage() {
                           className="text-blue-600 hover:text-blue-900 mr-4"
                           onClick={() => alert('Edit functionality coming soon!')}
                         >
-                          <Edit />
+                          <Edit02Icon size={20} />
                         </button>
                         <button 
                           onClick={() => handleDelete(product.id)}
                           className="text-red-600 hover:text-red-900"
                         >
-                          <Trash2 />
+                          <Delete02Icon size={20} />
                         </button>
                       </td>
                     </tr>

@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Search, X } from 'lucide-react';
+import { Search01Icon, Cancel01Icon } from 'hugeicons-react';
 import { getFeaturedProducts } from '../../data/phones';
 import { getAllLaptopProducts } from '../../data/laptops';
 
@@ -59,7 +59,7 @@ export default function GlobalSearch({ isOpen, onClose }) {
     <div className="fixed inset-0 bg-black/50 z-50 flex items-start justify-center pt-20 p-4">
       <div className="bg-white dark:bg-gray-800 rounded-lg max-w-2xl w-full max-h-[70vh] overflow-hidden shadow-xl">
         <div className="flex items-center p-4 border-b border-gray-200 dark:border-gray-700">
-          <Search className="w-5 h-5 text-gray-400 mr-3" />
+          <Search01Icon size={20} className="text-gray-400 mr-3" />
           <input
             type="text"
             placeholder="Search products..."
@@ -73,7 +73,7 @@ export default function GlobalSearch({ isOpen, onClose }) {
             onClick={onClose}
             className="ml-3 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
           >
-            <X className="w-5 h-5" />
+            <Cancel01Icon size={20} />
           </button>
         </div>
 

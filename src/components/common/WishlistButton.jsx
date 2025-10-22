@@ -1,4 +1,4 @@
-import { Heart } from 'lucide-react';
+import { FavouriteIcon } from 'hugeicons-react';
 import { useWishlist } from '../../context/WishlistContext';
 import { useToast } from '../../context/ToastContext';
 
@@ -14,12 +14,6 @@ export default function WishlistButton({ product, size = 'md', showText = false,
     toast.success(inWishlist ? `${product.name} removed from wishlist` : `${product.name} added to wishlist`);
   };
 
-  const sizeClasses = {
-    sm: 'w-4 h-4',
-    md: 'w-5 h-5',
-    lg: 'w-6 h-6'
-  };
-
   return (
     <button
       onClick={handleClick}
@@ -28,9 +22,14 @@ export default function WishlistButton({ product, size = 'md', showText = false,
       } hover:text-red-500 transition-colors ${className}`}
       aria-label={inWishlist ? 'Remove from wishlist' : 'Add to wishlist'}
     >
-      <Heart className={`${sizeClasses[size]} ${
-        inWishlist ? 'fill-red-500' : ''
-      }`} />
+      <FavouriteIcon
+        size={size === 'sm' ? 16 : size === 'md' ? 20 : 24}
+        style={{
+          fill: inWishlist ? '#ef4444' : 'none',
+          stroke: 'currentColor',
+          strokeWidth: 2
+        }}
+      />
       {showText && (
         <span className="text-sm font-medium">
           {inWishlist ? 'In Wishlist' : 'Add to Wishlist'}
