@@ -295,7 +295,7 @@ const ProductDetail = () => {
           </div>
 
           {/* Tab Content */}
-          <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-6">
+          <div className=" dark:bg-gray-800 rounded-lg p-6">
             {activeTab === 'details' ? (
               <div>
                 <h3 className="font-bold text-lg mb-4 dark:text-white">Product Details</h3>

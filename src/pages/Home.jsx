@@ -33,7 +33,7 @@ export default function Home() {
       <HeroCarousel />
 
       {/* Best Selling Product */}
-      <section className="mx-auto px-4 py-10">
+      <section className="mx-auto px-4 py-10 bg-transparent">
         <div className='container mx-auto'>
           <div className="flex justify-between items-center mb-6">
             <h2 className="text-2xl font-bold dark:text-dark-text">Best Selling Product</h2>
@@ -68,7 +68,7 @@ export default function Home() {
               1024: { slidesPerView: 4, spaceBetween: 20 }, // desktop
               1280: { slidesPerView: 5, spaceBetween: 24 }, // large desktop
             }}
-            className="max-w-[95%] md:max-w-[90%] mx-auto"
+            className="max-w-10xl mx-auto h-auto !p-6"
           >
             {bestSelling.map((product) => (
               <SwiperSlide key={product.id}>
@@ -83,7 +83,7 @@ export default function Home() {
         </div>  
         
         {/* Custom Pagination */}
-        <div className='flex justify-between md:justify-center mt-3'>
+        <div className='flex justify-between md:justify-center mt-3 '>
           <button className="block md:hidden custom-prev cursor-pointer bg-transparent ">
             <ChevronLeft size={50} className='-mx-2' />
           </button>
