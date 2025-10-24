@@ -99,19 +99,44 @@ export default function Home() {
       </section>
 
       {/* Discover Our Offers */}
-      <section className="bg-gray-700 dark:bg-dark-secondary text-white py-10">
-        <div className="container mx-auto px-4 flex flex-wrap justify-around gap-6 text-center">
-          <div>
-            <img src="/src/assets/img/Headphone-1.jpg" alt="Headphones" className="w-28 mx-auto" />
-            <p className="mt-2">Headphones</p>
-          </div>
-          <div>
-            <img src="/src/assets/img/iphone-15-promax.jpg" alt="Smartphones" className="w-28 mx-auto" />
-            <p className="mt-2">Smartphones</p>
-          </div>
-          <div>
-            <img src="/src/assets/img/hp-elitebook.jpg" alt="Laptops" className="w-28 mx-auto" />
-            <p className="mt-2">Laptops</p>
+      <section className=" text-white py-10">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {/* Top Left - Smart Phones (Larger) */}
+            <div className="md:row-span-2 bg-gray-600 dark:bg-dark-primary rounded-lg overflow-hidden hover:shadow-xl transition-shadow cursor-pointer group">
+              <div className="relative h-full min-h-[300px] md:min-h-[400px] flex flex-col justify-center items-center p-6">
+                <img 
+                  src="/src/assets/img/iphone-15-promax.jpg" 
+                  alt="Smartphones" 
+                  className="w-full h-full md:w-64 object-contain mb-4 group-hover:scale-105 transition-transform" 
+                />
+                <h3 className="text-xl md:text-2xl font-bold">Discover Our Smart Phones</h3>
+              </div>
+            </div>
+
+            {/* Top Right - Discover Our Offer */}
+            <div className="bg-gray-600 dark:bg-dark-primary rounded-lg overflow-hidden hover:shadow-xl transition-shadow cursor-pointer group">
+              <div className="relative h-full min-h-[150px] md:min-h-[195px] flex flex-col justify-center items-center p-6">
+                <img 
+                  src="/src/assets/img/hp-elitebook.jpg" 
+                  alt="Laptops" 
+                  className="w-32 md:w-40 object-contain mb-4 group-hover:scale-105 transition-transform" 
+                />
+                <h3 className="text-lg md:text-xl font-bold">Discover Our Offer</h3>
+              </div>
+            </div>
+
+            {/* Bottom Right - Discover Our Gadgets */}
+            <div className="bg-gray-600 dark:bg-dark-primary rounded-lg overflow-hidden hover:shadow-xl transition-shadow cursor-pointer group">
+              <div className="relative h-full min-h-[150px] md:min-h-[195px] flex flex-col justify-center items-center p-6">
+                <img 
+                  src="/src/assets/img/Headphone-1.jpg" 
+                  alt="Gadgets" 
+                  className="w-32 md:w-40 object-contain mb-4 group-hover:scale-105 transition-transform" 
+                />
+                <h3 className="text-lg md:text-xl font-bold">Discover Our Gadgets</h3>
+              </div>
+            </div>
           </div>
         </div>
       </section>

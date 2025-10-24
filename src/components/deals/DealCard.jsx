@@ -35,9 +35,9 @@ export default function DealCard({ product, type }) {
       to={`/${productType}-deals/${product.brand || 'unknown'}/${product.id}`}
       className="block group"
     >
-      <div className="relative bg-white dark:bg-gray-800 rounded-3xl p-4 border-4 border-white dark:border-gray-700 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+      <div className="relative bg-white dark:bg-gray-800 rounded-3xl p-2 md:p-4 border-4 border-white dark:border-gray-700 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
         {/* Image Container with rounded background */}
-        <div className="relative bg-gray-100 dark:bg-gray-700 rounded-2xl overflow-hidden mb-4 aspect-square p-4">
+        <div className="relative bg-gray-100 dark:bg-gray-700 rounded-2xl overflow-hidden mb-4 aspect-square p-2 md:p-4">
           <img
             src={product.image}
             alt={product.name}
@@ -48,15 +48,15 @@ export default function DealCard({ product, type }) {
           {/* Wishlist Heart Button - Top Right */}
           <button
             onClick={handleWishlistClick}
-            className="absolute top-3 right-3 w-8 h-8 rounded-full bg-gray-800/60 dark:bg-gray-900/60 backdrop-blur-sm flex items-center justify-center hover:bg-gray-800/80 transition-colors"
+            className="absolute top-3 right-3 w-8 h-8 rounded-full bg-gray-800/60 dark:bg-gray-900/60 backdrop-blur-sm flex items-center justify-center transition-colors"
             aria-label="Add to wishlist"
           >
             <FavouriteIcon
               size={20}
               style={{
-                fill: inWishlist ? '#fb2c36' : 'none',
-                stroke: inWishlist ? '#fb2c36 ' : '#fff',
-                strokeWidth: 2
+                fill: inWishlist ? '#e68a00' : 'none',
+                strokeWidth: 2,
+                color: inWishlist ? '#e68a00 ' : 'white',
               }}
               className="transition-all"
             />
@@ -77,7 +77,7 @@ export default function DealCard({ product, type }) {
             <h3 className="text-lg font-bold text-gray-800 dark:text-white mb-1 truncate">
               {product.name}
             </h3>
-            <p className="text-xl font-bold text-[#FF9500] dark:text-[#FFB340]">
+            <p className="text-lg md:text-xl font-bold text-gold3">
               ${product.price}
             </p>
           </div>
@@ -85,12 +85,12 @@ export default function DealCard({ product, type }) {
           {/* Add to Cart Button - Bottom Right */}
           <button
             onClick={handleAddToCart}
-            className="flex-shrink-0 w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-700 flex items-center justify-center hover:bg-gold2 hover:text-white transition-colors z-20"
+            className="flex-shrink-0 w-10 h-10 rounded-full bg-gray-90 dark:bg-gray-700 flex items-center justify-center hover:text-white transition-colors z-20"
             aria-label="Add to cart"
           >
             <ShoppingCart01Icon
               size={20}
-              className="text-gray-600 dark:text-gray-300 group-hover:text-white transition-colors"
+              className="text-white dark:text-gray-300 group-hover:text-white transition-colors"
             />
           </button>
         </div>
