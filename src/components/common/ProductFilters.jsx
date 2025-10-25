@@ -41,9 +41,9 @@ export default function ProductFilters({
   };
 
   return (
-    <div className={`bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-md p-0 ${className}`}>
-      <div className="px-4 py-3 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between">
-        <h3 className="text-sm font-semibold text-gray-800 dark:text-gray-100 uppercase tracking-wide">Filters</h3>
+    <div className={`bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-lg p-0 ${className}`}>
+      <div className="px-4 py-4 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between">
+        <h3 className="text-base font-bold text-gray-800 dark:text-gray-100">Filters</h3>
         <button
           onClick={() => {
             setMinPrice('');
@@ -51,7 +51,7 @@ export default function ProductFilters({
             setSelectedBrands([]);
             emitChange({ minPrice: '', maxPrice: '', brands: [] });
           }}
-          className="text-xs text-gold2 hover:underline"
+          className="text-sm text-gold2 hover:text-gold2/80 font-medium transition-colors"
         >
           Clear all
         </button>
@@ -71,7 +71,7 @@ export default function ProductFilters({
               setMinPrice(e.target.value);
               emitChange({ minPrice: e.target.value });
             }}
-            className="w-full px-3 py-2 text-sm rounded-md border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-gold2 dark:bg-gray-700 dark:text-white"
+            className="w-full px-3 py-2.5 text-sm rounded-lg border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-gold2 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all"
           />
           <input
             type="number"
@@ -83,7 +83,7 @@ export default function ProductFilters({
               setMaxPrice(e.target.value);
               emitChange({ maxPrice: e.target.value });
             }}
-            className="w-full px-3 py-2 text-sm rounded-md border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-gold2 dark:bg-gray-700 dark:text-white"
+            className="w-full px-3 py-2.5 text-sm rounded-lg border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-gold2 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all"
           />
         </div>
       </div>
@@ -96,10 +96,10 @@ export default function ProductFilters({
             {brands.map((b) => {
               const checked = selectedBrands.includes(b.id);
               return (
-                <label key={b.id} className="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-200">
+                <label key={b.id} className="flex items-center gap-3 text-sm text-gray-700 dark:text-gray-200 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700/50 p-2 rounded-lg transition-colors">
                   <input
                     type="checkbox"
-                    className="rounded border-gray-300 dark:border-gray-600 text-gold2 focus:ring-gold2"
+                    className="w-4 h-4 rounded border-gray-300 dark:border-gray-600 text-gold2 focus:ring-2 focus:ring-gold2 focus:ring-offset-0 cursor-pointer"
                     checked={checked}
                     onChange={(e) => {
                       let next;
@@ -109,7 +109,7 @@ export default function ProductFilters({
                       emitChange({ brands: next });
                     }}
                   />
-                  <span>{b.name}</span>
+                  <span className="flex-1">{b.name}</span>
                 </label>
               );
             })}

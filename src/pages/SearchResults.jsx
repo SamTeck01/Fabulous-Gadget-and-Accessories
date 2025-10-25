@@ -4,6 +4,7 @@ import DealCard from '../components/deals/DealCard';
 import { getFeaturedProducts } from '../data/phones';
 import { getAllLaptopProducts } from '../data/laptops';
 import { Search01Icon, FilterIcon, Sorting01Icon } from 'hugeicons-react';
+import ModernDropdown from '../components/common/ModernDropdown';
 
 export default function SearchResults() {
   const [searchParams] = useSearchParams();
@@ -72,33 +73,31 @@ export default function SearchResults() {
       </div>
 
       {/* Filters and Sort */}
-      <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6 space-y-4 md:space-y-0">
-        <div className="flex items-center space-x-4">
-          <div className="flex items-center">
-            <FilterIcon size={16} className="text-gray-500 mr-2" />
-            <select
-              value={filterType}
-              onChange={(e) => setFilterType(e.target.value)}
-              className="px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-gold2"
-            >
-              <option value="all">All Products</option>
-              <option value="phone">Phones</option>
-              <option value="laptop">Laptops</option>
-            </select>
-          </div>
+      <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6 gap-4">
+        <div className="flex flex-col md:flex-row items-stretch md:items-center gap-4">
+          <ModernDropdown
+            value={filterType}
+            onChange={setFilterType}
+            icon={FilterIcon}
+            options={[
+              { value: 'all', label: 'All Products' },
+              { value: 'phone', label: 'Phones' },
+              { value: 'laptop', label: 'Laptops' }
+            ]}
+            className="w-full md:w-48"
+          />
           
-          <div className="flex items-center">
-            <Sorting01Icon size={16} className="text-gray-500 mr-2" />
-            <select
-              value={sortBy}
-              onChange={(e) => setSortBy(e.target.value)}
-              className="px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-gold2"
-            >
-              <option value="name">Sort by Name</option>
-              <option value="price-low">Price: Low to High</option>
-              <option value="price-high">Price: High to Low</option>
-            </select>
-          </div>
+          <ModernDropdown
+            value={sortBy}
+            onChange={setSortBy}
+            icon={Sorting01Icon}
+            options={[
+              { value: 'name', label: 'Sort by Name' },
+              { value: 'price-low', label: 'Price: Low to High' },
+              { value: 'price-high', label: 'Price: High to Low' }
+            ]}
+            className="w-full md:w-56"
+          />
         </div>
 
         <div className="text-gray-600 dark:text-gray-300">

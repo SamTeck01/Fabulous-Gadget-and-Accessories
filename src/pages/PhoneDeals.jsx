@@ -1,8 +1,10 @@
 import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { Sorting01Icon } from 'hugeicons-react';
 import DealCard from '../components/deals/DealCard';
 import { getFeaturedProducts, getBrands } from '../data/phones';
 import ProductFilters from '../components/common/ProductFilters';
+import ModernDropdown from '../components/common/ModernDropdown';
 
 export default function PhoneDeals() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -106,20 +108,19 @@ export default function PhoneDeals() {
             }}
           />
         </div>
-        <div className="flex items-center gap-2">
-          <span className="text-sm text-gray-600 dark:text-gray-300">Sort by</span>
-          <select
-            value={filters.sortBy}
-            onChange={(e) => setFilters({ ...filters, sortBy: e.target.value })}
-            className="px-3 py-2 rounded-md border border-gray-300 dark:border-gray-600 focus:outline-none dark:bg-gray-700 dark:text-white"
-          >
-            <option value="relevance">Relevance</option>
-            <option value="price-asc">Price: Low to High</option>
-            <option value="price-desc">Price: High to Low</option>
-            <option value="name-asc">Name: A to Z</option>
-            <option value="name-desc">Name: Z to A</option>
-          </select>
-        </div>
+        <ModernDropdown
+          value={filters.sortBy}
+          onChange={(value) => setFilters({ ...filters, sortBy: value })}
+          icon={Sorting01Icon}
+          options={[
+            { value: 'relevance', label: 'Relevance' },
+            { value: 'price-asc', label: 'Price: Low to High' },
+            { value: 'price-desc', label: 'Price: High to Low' },
+            { value: 'name-asc', label: 'Name: A to Z' },
+            { value: 'name-desc', label: 'Name: Z to A' }
+          ]}
+          className="w-full md:w-64"
+        />
       </div>
 
       {/* Applied filter chips */}
