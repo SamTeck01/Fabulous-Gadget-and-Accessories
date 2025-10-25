@@ -85,12 +85,12 @@ export default function DealCard({ product, type }) {
           {/* Add to Cart Button - Bottom Right */}
           <button
             onClick={handleAddToCart}
-            className="flex-shrink-0 w-10 h-10 rounded-full bg-gray-90 dark:bg-gray-700 flex items-center justify-center hover:text-white transition-colors z-20"
+            className="flex-shrink-0 w-10 h-10 rounded-full bg-gray-90/10 dark:bg-gray-700 flex items-center justify-center hover:text-white transition-colors z-20"
             aria-label="Add to cart"
           >
             <ShoppingCart01Icon
               size={20}
-              className="text-white dark:text-gray-300 group-hover:text-white transition-colors"
+              className="text-black transition-colors"
             />
           </button>
         </div>

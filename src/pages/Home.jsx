@@ -8,6 +8,9 @@ import { Navigation, Pagination } from 'swiper/modules';
 import phone from '../assets/img/Artboard_1_copy_2.png';
 import laptop from '../assets/img/Artboard_1_copy_3.png';
 import accessories from '../assets/img/Artboard_1_copy_7.png';
+import DiscoverPhone from '../assets/img/iphone-15-promax.jpg';
+import DiscoverLaptop from '../assets/img/hp-elitebook.jpg';
+import DiscoverHeadphone from '../assets/img/Headphone-1.jpg';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -66,7 +69,7 @@ export default function Home() {
               640: { slidesPerView: 2.5, spaceBetween: 16 }, // large phones / small tablets
               768: { slidesPerView: 3, spaceBetween: 18 }, // tablets
               1024: { slidesPerView: 4, spaceBetween: 20 }, // desktop
-              1280: { slidesPerView: 5, spaceBetween: 24 }, // large desktop
+              1280: { slidesPerView: 4, spaceBetween: 24 }, // large desktop
             }}
             className="max-w-10xl mx-auto h-auto !p-6"
           >
@@ -99,48 +102,68 @@ export default function Home() {
       </section>
 
       {/* Discover Our Offers */}
-      <section className=" text-white py-10">
+      <section className="py-10">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <h2 className="text-2xl font-bold dark:text-dark-text mb-6">Discover Our Offers</h2>
+
+          <div className="grid grid-cols-2 gap-4 text-white">
             {/* Top Left - Smart Phones (Larger) */}
-            <div className="md:row-span-2 bg-gray-600 dark:bg-dark-primary rounded-lg overflow-hidden hover:shadow-xl transition-shadow cursor-pointer group">
-              <div className="relative h-full min-h-[300px] md:min-h-[400px] flex flex-col justify-center items-center p-6">
-                <img 
-                  src="/src/assets/img/iphone-15-promax.jpg" 
-                  alt="Smartphones" 
-                  className="w-full h-full md:w-64 object-contain mb-4 group-hover:scale-105 transition-transform" 
-                />
-                <h3 className="text-xl md:text-2xl font-bold">Discover Our Smart Phones</h3>
+            <Link 
+              to="/phone-deals"
+              className="col-span-2 md:col-span-1 md:row-span-2 rounded-2xl overflow-hidden hover:shadow-2xl transition-all duration-300 cursor-pointer group relative"
+              style={{ backgroundImage: `url(${DiscoverPhone})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
+            >
+              <div className="relative h-full min-h-[200px] md:min-h-[400px] p-3 md:p-6 bg-gradient-to-b from-black/20 via-black/40 to-black/70 backdrop-blur-[1px] flex items-end group-hover:from-black/10 group-hover:via-black/30 group-hover:to-black/60 transition-all duration-300">
+                <div className="bg-white/10 backdrop-blur-lg rounded-xl p-2 md:p-4 border border-white/20 shadow-xl group-hover:bg-white/15 group-hover:backdrop-blur-xl transition-all duration-300">
+                  <h3 className="text-lg md:text-2xl font-medium md:font-bold drop-shadow-lg">Smart Phones</h3>
+                </div>
               </div>
-            </div>
+            </Link>
 
-            {/* Top Right - Discover Our Offer */}
-            <div className="bg-gray-600 dark:bg-dark-primary rounded-lg overflow-hidden hover:shadow-xl transition-shadow cursor-pointer group">
-              <div className="relative h-full min-h-[150px] md:min-h-[195px] flex flex-col justify-center items-center p-6">
-                <img 
-                  src="/src/assets/img/hp-elitebook.jpg" 
-                  alt="Laptops" 
-                  className="w-32 md:w-40 object-contain mb-4 group-hover:scale-105 transition-transform" 
-                />
-                <h3 className="text-lg md:text-xl font-bold">Discover Our Offer</h3>
+            {/* Top Right - Laptops */}
+            <Link 
+              to="/laptop-deals"
+              className="rounded-2xl overflow-hidden hover:shadow-2xl transition-all duration-300 cursor-pointer group relative"
+              style={{ backgroundImage: `url(${DiscoverLaptop})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
+            >
+              <div className="bg-gradient-to-b from-black/20 via-black/40 to-black/70 backdrop-blur-[1px] relative h-full min-h-[100px] md:min-h-[195px] flex items-end p-3 md:p-6 group-hover:from-black/10 group-hover:via-black/30 group-hover:to-black/60 transition-all duration-300">
+                <div className="bg-white/10 backdrop-blur-lg rounded-lg p-2 md:p-4 border border-white/20 shadow-xl group-hover:bg-white/15 group-hover:backdrop-blur-xl transition-all duration-300">
+                  <h3 className="text-lg md:text-xl font-medium md:font-bold drop-shadow-lg">Laptops</h3>
+                </div>
               </div>
-            </div>
+            </Link>
 
-            {/* Bottom Right - Discover Our Gadgets */}
-            <div className="bg-gray-600 dark:bg-dark-primary rounded-lg overflow-hidden hover:shadow-xl transition-shadow cursor-pointer group">
-              <div className="relative h-full min-h-[150px] md:min-h-[195px] flex flex-col justify-center items-center p-6">
-                <img 
-                  src="/src/assets/img/Headphone-1.jpg" 
-                  alt="Gadgets" 
-                  className="w-32 md:w-40 object-contain mb-4 group-hover:scale-105 transition-transform" 
-                />
-                <h3 className="text-lg md:text-xl font-bold">Discover Our Gadgets</h3>
+            {/* Bottom Right - Gadgets */}
+            <Link 
+              to="/phone-deals"
+              className="rounded-2xl overflow-hidden hover:shadow-2xl transition-all duration-300 cursor-pointer group relative"
+              style={{ backgroundImage: `url(${DiscoverHeadphone})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
+            >
+              <div className="bg-gradient-to-b from-black/20 via-black/40 to-black/70 backdrop-blur-[1px] relative h-full min-h-[100px] md:min-h-[195px] flex items-end p-3 md:p-4 group-hover:from-black/10 group-hover:via-black/30 group-hover:to-black/60 transition-all duration-300">
+                <div className="bg-white/10 backdrop-blur-lg rounded-xl p-2 md:p-4 border border-white/20 shadow-xl group-hover:bg-white/15 group-hover:backdrop-blur-xl transition-all duration-300">
+                  <h3 className="text-lg md:text-xl font-medium md:font-bold drop-shadow-lg">Gadgets</h3>
+                </div>
               </div>
-            </div>
+            </Link>
           </div>
         </div>
       </section>
 
+      {/* New Arrivals */}
+      <section className="container mx-auto px-4 py-10">
+        <div className="flex justify-between items-center mb-6">
+          <h2 className="text-2xl font-bold dark:text-white">New Arrival</h2>
+          <Link to="/phone-deals" className="text-sm hover:underline text-gold2">
+            View more
+          </Link>
+        </div>
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
+          {newArrivals.map(product => (
+            <DealCard key={product.id} product={product} />
+          ))}
+        </div>
+      </section>
+      
       {/* Categories */}
       <section className="container mx-auto px-4 pt-10 ">
           <div className="flex justify-between items-center mb-6">
@@ -161,21 +184,6 @@ export default function Home() {
                 <p className="text-white font-medium text-base">{cat.name}</p>
               </div>
             </Link>
-          ))}
-        </div>
-      </section>
-
-      {/* New Arrivals */}
-      <section className="container mx-auto px-4 py-10">
-        <div className="flex justify-between items-center mb-6">
-          <h2 className="text-2xl font-bold dark:text-white">New Arrival</h2>
-          <Link to="/phone-deals" className="text-sm hover:underline text-gold2">
-            View more
-          </Link>
-        </div>
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
-          {newArrivals.map(product => (
-            <DealCard key={product.id} product={product} />
           ))}
         </div>
       </section>
