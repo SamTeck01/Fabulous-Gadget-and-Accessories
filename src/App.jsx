@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from './components/common/Header';
+import ScrollToTop from './components/common/ScrollToTop';
 import Home from './pages/Home';
 import PhoneDeals from './pages/PhoneDeals';
 import PhoneSession from './pages/PhoneSession';
@@ -28,6 +29,7 @@ export default function App() {
           <WishlistProvider>
             <CartProvider>
               <BrowserRouter>
+              <ScrollToTop />
               <Header/>
               <Routes>
                 <Route path="/">

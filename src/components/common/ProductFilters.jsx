@@ -96,7 +96,7 @@ export default function ProductFilters({
             {brands.map((b) => {
               const checked = selectedBrands.includes(b.id);
               return (
-                <label key={b.id} className="flex items-center gap-3 text-sm text-gray-700 dark:text-gray-200 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700/50 p-2 rounded-lg transition-colors">
+                <label key={b.id} className="flex items-center gap-3 text-sm text-gray-700 dark:text-gray-200 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700/50 p-2 rounded-lg transition-colors">
                   <input
                     type="checkbox"
                     className="w-4 h-4 rounded border-gray-300 dark:border-gray-600 text-gold2 focus:ring-2 focus:ring-gold2 focus:ring-offset-0 cursor-pointer"

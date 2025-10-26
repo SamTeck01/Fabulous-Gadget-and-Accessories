@@ -85,7 +85,7 @@ export default function LaptopSession() {
   if (!brandData) return <div className="text-center py-10 dark:text-white">Brand not found</div>;
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-dark-primary">
+    <div className="min-h-screen">
       <Helmet>
         <title>{brandData.name} Laptops - Fabulous Gadgets</title>
         <meta name="description" content={`Browse ${brandData.name} laptops with the best prices and deals`} />

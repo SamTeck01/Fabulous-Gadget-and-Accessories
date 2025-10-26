@@ -150,7 +150,7 @@ export default function Cart() {
                     {/* Price */}
                     <div className="col-span-3 text-right">
                       <p className="font-bold text-lg dark:text-white">
-                        ${(parseFloat(item.price.replace(/,/g, '')) * item.quantity).toLocaleString()}
+                        ₦{(parseFloat(item.price.replace(/,/g, '')) * item.quantity).toLocaleString()}
                       </p>
                       <button
                         onClick={() => removeFromCart(item.id)}
@@ -167,24 +167,24 @@ export default function Cart() {
 
             {/* Order Summary */}
             <div className="lg:col-span-1">
-              <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-6 sticky top-4">
+              <div className="bg-gray-100 dark:bg-gray-800 rounded-lg p-6 sticky top-4">
                 <h2 className="text-xl font-bold mb-6 dark:text-white">Order Summary</h2>
 
                 <div className="space-y-3 mb-6">
                   <div className="flex justify-between text-gray-600 dark:text-gray-400">
                     <span>Subtotal</span>
                     <span className="font-semibold dark:text-white">
-                      ${selectedTotal.toLocaleString()}
+                      ₦{selectedTotal.toLocaleString()}
                     </span>
                   </div>
                   <div className="flex justify-between text-gray-600 dark:text-gray-400">
                     <span>Discount</span>
-                    <span className="font-semibold dark:text-white">$0</span>
+                    <span className="font-semibold dark:text-white">₦0</span>
                   </div>
                   <div className="border-t border-gray-200 dark:border-gray-700 pt-3 mt-3">
                     <div className="flex justify-between text-lg font-bold dark:text-white">
                       <span>Grand total</span>
-                      <span>${selectedTotal.toLocaleString()}</span>
+                      <span>₦{selectedTotal.toLocaleString()}</span>
                     </div>
                   </div>
                 </div>

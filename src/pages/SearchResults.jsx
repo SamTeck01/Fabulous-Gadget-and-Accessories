@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useSearchParams, Link } from 'react-router-dom';
 import DealCard from '../components/deals/DealCard';
-import { getFeaturedProducts } from '../data/phones';
+import { getTopBrandProducts } from '../data/phones';
 import { getAllLaptopProducts } from '../data/laptops';
 import { Search01Icon, FilterIcon, Sorting01Icon } from 'hugeicons-react';
 import ModernDropdown from '../components/common/ModernDropdown';
@@ -15,7 +15,7 @@ export default function SearchResults() {
   const productsPerPage = 12;
 
   const allProducts = [
-    ...getFeaturedProducts().map(p => ({ ...p, type: 'phone', category: 'Phones' })),
+    ...getTopBrandProducts().map(p => ({ ...p, type: 'phone', category: 'Phones' })),
     ...getAllLaptopProducts().map(p => ({ ...p, type: 'laptop', category: 'Laptops' }))
   ];
 

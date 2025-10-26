@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Sorting01Icon } from 'hugeicons-react';
 import DealCard from '../components/deals/DealCard';
-import { getFeaturedProducts, getBrands } from '../data/phones';
+import { getTopBrandProducts, getBrands } from '../data/phones';
 import ProductFilters from '../components/common/ProductFilters';
 import ModernDropdown from '../components/common/ModernDropdown';
 
@@ -13,14 +13,10 @@ export default function PhoneDeals() {
   const [showMobileFilters, setShowMobileFilters] = useState(false);
   
   const brands = getBrands();
-  // add brand id onto each featured product to enable brand filter
+  // Get all phone products from all brands
   const allProducts = useMemo(() => {
-    const byBrand = brands.reduce((acc, b) => ({ ...acc, [b.id]: true }), {});
-    // getFeaturedProducts lacks brand id, so infer by scanning brand catalogs if needed
-    const featured = getFeaturedProducts();
-    // best-effort: if a product already has brand, keep it; otherwise skip inference here
-    return featured.map(p => ({ ...p, brand: p.brand && byBrand[p.brand] ? p.brand : (p.brand || 'apple'), type: 'phone' }));
-  }, [brands]);
+    return getTopBrandProducts();
+  }, []);
   
   const [filters, setFilters] = useState({ minPrice: '', maxPrice: '', sortBy: 'relevance', brands: [] });
 
@@ -140,9 +136,9 @@ export default function PhoneDeals() {
         ) : null}
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-[260px,1fr] gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-[260px_1fr] gap-6">
         {/* Sidebar filters (desktop) */}
-        <aside className="hidden md:block">
+        <aside className="hidden md:block ">
           <ProductFilters
             products={allProducts}
             brands={brands.map(({ id, name }) => ({ id, name }))}

@@ -5,8 +5,8 @@ import { useCart } from '../../context/CartContext';
 import { useWishlist } from '../../context/WishlistContext';
 import { useTheme } from '../../context/ThemeContext';
 import { useState, useRef, useEffect } from 'react';
-import { getFeaturedProducts } from '../../data/phones';
-import { getFeaturedLaptops } from '../../data/laptops';
+import { getTopBrandProducts } from '../../data/phones';
+import { getAllLaptopProducts } from '../../data/laptops';
 import MobileSidebar from './MobileSidebar';
 
 export default function Header() {
@@ -40,8 +40,8 @@ export default function Header() {
   // Search products as user types
   useEffect(() => {
     if (searchQuery.trim().length > 0) {
-      const phones = getFeaturedProducts();
-      const laptops = getFeaturedLaptops();
+      const phones = getTopBrandProducts();
+      const laptops = getAllLaptopProducts();
       const allProducts = [...phones, ...laptops];
       
       const filtered = allProducts.filter(product => 
@@ -79,7 +79,7 @@ export default function Header() {
   return (
     <>
       <header className="bg-white dark:bg-ash shadow-md sticky top-0 z-40">
-        <div className="container mx-auto px-4 py-3 flex items-center justify-between gap-4">
+        <div className="container mx-auto px-3 py-3 flex items-center justify-between gap-4">
           {/* Left Side - Logo */}
           <div className='flex items-center space-x-3 flex-shrink-0'>
             {/* Mobile Menu Button */}
@@ -141,7 +141,7 @@ export default function Header() {
                         </p>
                       </div>
                       <p className="text-sm font-semibold text-gold2">
-                        ${product.price}
+                        ₦{product.price}
                       </p>
                     </button>
                   ))}
@@ -167,7 +167,7 @@ export default function Header() {
           </div>
 
           {/* Right Side - Icons */}
-          <div className="flex items-center space-x-2 md:space-x-3 flex-shrink-0">
+          <div className="flex items-center space-x-2 md:space-x-4 flex-shrink-0">
             {/* Search Button - Mobile Only */}
             <button 
               onClick={() => navigate('/search')}
@@ -194,7 +194,7 @@ export default function Header() {
             {/* Cart Button */}
             <button 
               onClick={() => navigate('/cart')}
-              className="p-2 text-gray-700 dark:text-gray-200 hover:text-gold2 transition-colors relative ring-2 ring-gray-100  rounded-full"
+              className="p-2 text-gray-700 dark:text-gray-200 hover:text-gold2 transition-colors relative ring-2 ring-gray-100 rounded-full cursor-pointer"
               aria-label="Cart"
             >
               <ShoppingCart01Icon size={20} />
@@ -209,7 +209,7 @@ export default function Header() {
             <div className="relative" ref={dropdownRef}>
               <button
                 onClick={() => setIsProfileDropdownOpen(!isProfileDropdownOpen)}
-                className="flex items-center space-x-2 md:space-x-3 px-2 py-1.5 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                className="flex items-center space-x-2 md:space-x-4 px-2 py-1.5 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors cursor-pointer"
                 aria-label="Profile menu"
               >
                 {/* Profile Avatar */}

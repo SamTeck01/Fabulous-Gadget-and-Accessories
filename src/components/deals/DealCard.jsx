@@ -78,7 +78,7 @@ export default function DealCard({ product, type }) {
               {product.name}
             </h3>
             <p className="text-lg md:text-xl font-bold text-gold3">
-              ${product.price}
+              ₦{product.price}
             </p>
           </div>
 

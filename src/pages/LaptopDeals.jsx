@@ -138,7 +138,7 @@ export default function LaptopDeals() {
         ) : null}
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-[260px,1fr] gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-[260px_1fr] gap-6">
         {/* Sidebar filters (desktop) */}
         <aside className="hidden md:block">
           <ProductFilters

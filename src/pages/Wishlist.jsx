@@ -22,7 +22,7 @@ export default function Wishlist() {
 
   if (wishlistItems.length === 0) {
     return (
-      <div className="min-h-screen bg-gray-50 dark:bg-dark-primary py-12">
+      <div className="min-h-screen bg-gray-100 dark:bg-dark-primary py-12">
         <Helmet>
           <title>Wishlist - Fabulous Gadgets</title>
         </Helmet>
@@ -46,9 +46,9 @@ export default function Wishlist() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-dark-primary py-8">
+    <div className="min-h-screen bg-white dark:bg-dark-primary py-8">
       <Helmet>
-        <title>Wishlist ({wishlistItems.length}) - Fabulous Gadgets</title>
+        <title>{`Wishlist (${wishlistItems.length || 0}) - Fabulous Gadgets`}</title>
       </Helmet>
       
       <div className="container mx-auto px-4 max-w-6xl">

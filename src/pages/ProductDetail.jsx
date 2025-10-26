@@ -172,7 +172,7 @@ const ProductDetail = () => {
             </div>
 
             {/* Price */}
-            <p className="text-3xl font-bold mb-6 dark:text-white">${product.price}</p>
+            <p className="text-3xl font-bold mb-6 dark:text-white">₦{product.price}</p>
 
             {/* Available Size */}
             <div className="mb-6">
