@@ -2,7 +2,7 @@ import { useWishlist } from '../context/WishlistContext';
 import { useCart } from '../context/CartContext';
 import { useToast } from '../context/ToastContext';
 import { Link } from 'react-router-dom';
-import { Delete02Icon, ShoppingCart01Icon, FavouriteIcon } from 'hugeicons-react';
+import { ShoppingCart01Icon, FavouriteIcon } from 'hugeicons-react';
 import { Helmet } from 'react-helmet';
 
 export default function Wishlist() {
@@ -51,9 +51,10 @@ export default function Wishlist() {
         <title>{`Wishlist (${wishlistItems.length || 0}) - Fabulous Gadgets`}</title>
       </Helmet>
       
-      <div className="container mx-auto px-4 max-w-6xl">
-        <div className="flex justify-between items-center mb-8">
-          <h1 className="text-3xl font-bold dark:text-white">
+      <div className="container mx-auto px-12 max-w-6xl">
+        <div className="flex flex-col shadow-md bg-gray-100 dark:bg-dark-secondary rounded-lg border border-gray-200 dark:border-dark-tertiary">
+           <div className="flex justify-between items-center mb-8">
+          <h1 className="text-xl font-bold text-white bg-gold2 p-2 rounded-lg mt-5 ml-2">
             My Wishlist ({wishlistItems.length})
           </h1>
           {wishlistItems.length > 0 && (
@@ -64,68 +65,61 @@ export default function Wishlist() {
                   toast.info('Wishlist cleared');
                 }
               }}
-              className="text-red-600 hover:text-red-700 text-sm font-medium"
+              className="text-red-600 hover:bg-gold2/90 text-sm font-medium bg-gold2 p-2 rounded-lg mr-2 mt-5"
             >
               Clear All
             </button>
           )}
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {wishlistItems.map((product) => (
             <div
               key={product.id}
-              className="bg-white dark:bg-dark-secondary rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow"
+              className="bg-white dark:bg-dark-secondary rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow flex flex-row m-2 justify-between"
             >
               <Link to={`/${product.type || 'phone'}-deals/${product.brand || 'unknown'}/${product.id}`}>
-                <div className="aspect-[4/3] overflow-hidden">
+                <div className="aspect-[4/2] lg:aspect-[3/2] w-50 flex flex-row">
                   <img
                     src={product.image}
                     alt={product.name}
-                    className="w-full h-full object-contain hover:scale-105 transition-transform"
+                    className="w-full h-full object-contain hover:scale-105 transition-transform mt-2 mb-2 ml-2"
                   />
+
+                  <div className='flex flex-col justify-between p-2'>
+                      <Link to={`/${product.type || 'phone'}-deals/${product.brand || 'unknown'}/${product.id}`}>
+                        <h3 className="font-semibold text-sm lg:text-lg mb-2 dark:text-white hover:text-gold2 transition-colors line-clamp-2">
+                        {product.name}
+                        </h3>
+                      </Link>
+
+                      <p className="text-xl font-bold text-gold2 lg:text-2xl">
+                      ₦{product.price}
+                      </p>
+                  </div>
+
+                  
+
+                  
                 </div>
               </Link>
               
-              <div className="p-4">
-                <Link to={`/${product.type || 'phone'}-deals/${product.brand || 'unknown'}/${product.id}`}>
-                  <h3 className="font-semibold text-lg mb-2 dark:text-white hover:text-gold2 transition-colors line-clamp-2">
-                    {product.name}
-                  </h3>
-                </Link>
-                
-                <div className="flex items-center gap-2 mb-3">
-                  {product.rating && (
-                    <div className="flex items-center gap-1">
-                      <span className="text-yellow-500">★</span>
-                      <span className="text-sm font-medium dark:text-white">{product.rating}</span>
-                      {product.reviews && (
-                        <span className="text-xs text-gray-500 dark:text-gray-400">
-                          ({product.reviews})
-                        </span>
-                      )}
-                    </div>
-                  )}
-                </div>
-                
-                <p className="text-2xl font-bold text-gold2 mb-4">
-                  ₦{product.price}
-                </p>
+              <div className="p-4">            
+                <div className="flex flex-col gap-6">
 
-                <div className="flex gap-2">
+                   <button
+                    onClick={() => handleRemove(product.id, product.name)}
+                    className="text-red-500 hover:text-red-400 transition-colors cursor-pointer text-md lg:text-lg"
+                    aria-label="Remove from wishlist"
+                  >
+                    Remove
+                  </button>
+                  
                   <button
                     onClick={() => handleAddToCart(product)}
-                    className="flex-1 bg-gold2 text-white py-2 rounded-lg hover:bg-gold2/90 transition-colors flex items-center justify-center gap-2 font-medium"
+                    className="flex-1 bg-gold2 text-white text-sm lg:text-lg p-2 rounded-lg hover:bg-gold2/90 transition-colors flex items-center justify-center gap-2 font-medium"
                   >
                     <ShoppingCart01Icon size={16} />
                     Add to Cart
-                  </button>
-                  <button
-                    onClick={() => handleRemove(product.id, product.name)}
-                    className="p-2 border border-red-500 text-red-500 rounded-lg hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors"
-                    aria-label="Remove from wishlist"
-                  >
-                    <Delete02Icon size={20} />
                   </button>
                 </div>
               </div>
