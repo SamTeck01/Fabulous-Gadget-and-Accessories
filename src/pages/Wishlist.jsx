@@ -4,6 +4,7 @@ import { useToast } from '../context/ToastContext';
 import { Link } from 'react-router-dom';
 import { ShoppingCart01Icon, FavouriteIcon } from 'hugeicons-react';
 import { Helmet } from 'react-helmet';
+import { FaTrash } from 'react-icons/fa'; // For Font Awesome trash icon
 
 export default function Wishlist() {
   const { wishlistItems, removeFromWishlist, clearWishlist } = useWishlist();
@@ -104,22 +105,21 @@ export default function Wishlist() {
               </Link>
               
               <div className="p-4">            
-                <div className="flex flex-col gap-6">
+                <div className="flex flex-col gap-6 lg:gap-10 justify-center mt-2 lg:mt-4">
 
                    <button
                     onClick={() => handleRemove(product.id, product.name)}
                     className="text-red-500 hover:text-red-400 transition-colors cursor-pointer text-md lg:text-lg"
                     aria-label="Remove from wishlist"
                   >
-                    Remove
+                    <FaTrash />
                   </button>
                   
                   <button
                     onClick={() => handleAddToCart(product)}
-                    className="flex-1 bg-gold2 text-white text-sm lg:text-lg p-2 rounded-lg hover:bg-gold2/90 transition-colors flex items-center justify-center gap-2 font-medium"
+                    className="flex-1 bg-gold2 text-white text-sm lg:text-lg p-2 rounded-lg hover:bg-gold2/90 transition-colors flex items-center justify-center gap-2 font-medium mb-0"
                   >
                     <ShoppingCart01Icon size={16} />
-                    Add to Cart
                   </button>
                 </div>
               </div>
